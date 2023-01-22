@@ -1,1 +1,1 @@
-# jewoodev.github.io
+# 새로 블로그를 개설했습니다!
