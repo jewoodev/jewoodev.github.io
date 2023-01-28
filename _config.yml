@@ -21,7 +21,7 @@ timezone: Asia/Seoul
 
 title: Jewoo Sin                          # the main title
 
-tagline: Student   # it will display as the sub-title
+tagline: 하나씩, 점을 찍어나가며   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   To be better
