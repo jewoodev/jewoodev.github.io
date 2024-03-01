@@ -26,7 +26,7 @@ Possible solution:
 
 ### 1.1 Config Client Dependency  
 
-```properties
+```groovy
 ext {
   set('springCloudVersion', "2023.0.0")
 }
@@ -44,11 +44,11 @@ dependencyManagement {
 
 ### 1.2 QueryDSL Dependency
 
-```properties
+```groovy
 implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
-    annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
-    annotationProcessor "jakarta.annotation:jakarta.annotation-api"
-    annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
+annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 ```
 
 ## 2. 문제의 원인
@@ -73,11 +73,11 @@ javax 의존성이 있어서 이상하다 생각했다.
 
 Spring Boot 3.x 부터 jakarta 로 대체되었기 때문이다. 그래서 현재 버전에 맞는 querydsl-apt 버전을 직접 기입해보았다.
 
-```properties
+```groovy
 implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
-    annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
-    annotationProcessor "jakarta.annotation:jakarta.annotation-api"
-    annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+annotationProcessor "com.querydsl:querydsl-apt:5.0.0:jakarta"
+annotationProcessor "jakarta.annotation:jakarta.annotation-api"
+annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 ```
 
 이 시도로 문제가 해결되었다.
