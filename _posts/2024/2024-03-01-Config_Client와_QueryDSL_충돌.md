@@ -1,6 +1,6 @@
 ---
 title : "Spring Config Client와 QueryDSL 충돌"
-date : 2024-02-21 17:45:00 +09:00
+date : 2024-03-01 15:25:00 +09:00
 categories : [Trouble Shooting, Version Conflict]
 tags : []
 math : true
