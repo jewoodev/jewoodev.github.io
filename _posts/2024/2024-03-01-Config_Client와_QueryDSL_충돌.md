@@ -20,7 +20,9 @@ Possible solution:
  - Declare repository providing the artifact, see the documentation at https://docs.gradle.org/current/userguide/declaring_repositories.html
 ```
 
-정확한 문제를 파악하기 어려워 사용 중인dependencies를 다시 처음부터 하나하나 추가해보면서 어떤 의존성에서 발생되는 것인지 파악해보려 했다. 
+에러가 건네준 링크에서는 Gradle 프로젝트에서 리포지토리를 명시하는 방법에 대한 내용만 있고, 문제의 원인이나 해결방법에 대한 힌트를 얻지 못했다. 하여간 에러에서 알려주는 내용만 가지고는 어떻게 해결하기는 어려운 상황이었는데, 내가 검색 요령이 없는건지 같은 트러블을 만났던 사람이 없는건지 구글링을 해봐도 관련 내용은 전혀 없었고, GPT의 힘을 빌리자니 문제 파악을 전혀 못하고 있는데 도움을 줄 수 있을리가 없었다(당연하다, 오히려 좋아). 
+
+스스로 파헤쳐보려고 머리를 계속 굴리다가 사용 중인 dependencies를 다시 처음부터 하나하나 추가해보면서 어떤 의존성에서 발생되는 것인지 파악해보려 했다. 
 
 그 결과로, 기존 의존성에서 QueryDSL을 제거하고 Config Client를 추가했을 때는 문제 없이 build되는 것을 확인할 수 있었다. 
 
@@ -63,11 +65,13 @@ annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedPr
 
 에서 문제가 발생되는 것을 확인할 수 있었다. 
 
+> **참고**
+>
 > querydsl-apt 라이브러리는Q타입 class를 자동 생성해주는 역할을 한다.
 
 ## 3. 문제 해결
 
-아래 명령어로 dependencies 구성 문제를 정확히 살펴보았다.
+그래서 아래 명령어로 dependencies 구성 문제를 정확히 살펴보았다.
 
 ```bash
 ./gradlew dependencies
