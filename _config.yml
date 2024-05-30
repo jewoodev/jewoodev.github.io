@@ -16,7 +16,7 @@ timezone: Asia/Seoul
 
 title: Jewoo Sin # the main title
 
-tagline: NEVER GIVE UP # it will display as the sub-title
+tagline: NEVER GIVE UP, KEEP GOING # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   A minimal, responsive and feature-rich Jekyll theme for technical writing.
@@ -161,6 +161,11 @@ defaults:
       path: assets/js/dist
     values:
       swcache: true
+  - scope:
+      path: ""
+      type: "robots.txt"
+    values: 
+      layout: "nil"
 
 sass:
   style: compressed
