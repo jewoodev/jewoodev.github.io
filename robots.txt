@@ -4,4 +4,4 @@ Allow: /
 
 Disallow: /norobots/
 
-Sitemap: {{ '/sitemap.xml' | absolute_url }}
+Sitemap: https://jewoodev.github.io/sitemap.xml
