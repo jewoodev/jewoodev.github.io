@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="50ec7f33-2cd8-41a8-a0c0-2a58e7ecb718" name="Changes" comment="fix: 이전 커밋에 서술된 문제 해결 9차 시도" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2sbATPXFnLJlo3HnTG5D1e2KPl2" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/jewoo/jewoodev.github.io/assets/img",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.stylelint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.stylelint": "D:\\jewoo\\jewoodev.github.io\\node_modules\\stylelint",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.language",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\jewoo\jewoodev.github.io\assets\img" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\admin\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="50ec7f33-2cd8-41a8-a0c0-2a58e7ecb718" name="Changes" comment="" />
+      <created>1738713908320</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1738713908320</updated>
+      <workItem from="1738713909373" duration="238000" />
+      <workItem from="1739001500228" duration="6180000" />
+    </task>
+    <task id="LOCAL-00001" summary="📰 post: 데브클럽 네트워킹 후기">
+      <option name="closed" value="true" />
+      <created>1739004835674</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1739004835674</updated>
+    </task>
+    <task id="LOCAL-00002" summary="🚑 fix: 이전 커밋에 서술된 문제 해결 2차 시도">
+      <option name="closed" value="true" />
+      <created>1739006624437</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1739006624437</updated>
+    </task>
+    <task id="LOCAL-00003" summary="🚑 fix: 이전 커밋에 서술된 문제 해결 3차 시도">
+      <option name="closed" value="true" />
+      <created>1739007120827</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1739007120827</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fix: 이전 커밋에 서술된 문제 해결 4차 시도">
+      <option name="closed" value="true" />
+      <created>1739007637507</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1739007637507</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix: 이전 커밋에 서술된 문제 해결 5차 시도">
+      <option name="closed" value="true" />
+      <created>1739008756443</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1739008756443</updated>
+    </task>
+    <task id="LOCAL-00006" summary="fix: img에 alt 속성 없는 문제 해결 시도">
+      <option name="closed" value="true" />
+      <created>1739009003731</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1739009003731</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fix: 커밋 메세지에 한글 금지된 것인지 테스트">
+      <option name="closed" value="true" />
+      <created>1739009405414</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1739009405414</updated>
+    </task>
+    <task id="LOCAL-00008" summary="fix: 문제 해결을 위한 파일 청소">
+      <option name="closed" value="true" />
+      <created>1739009571318</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1739009571318</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fix: 문제 해결을 위한 파일 청소">
+      <option name="closed" value="true" />
+      <created>1739009733339</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1739009733339</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Merge remote-tracking branch 'origin/main'">
+      <option name="closed" value="true" />
+      <created>1739009897959</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1739009897959</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fix: 이전 커밋에 서술된 문제 해결 7차 시도">
+      <option name="closed" value="true" />
+      <created>1739010507780</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1739010507780</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix: 이전 커밋에 서술된 문제 해결 8차 시도">
+      <option name="closed" value="true" />
+      <created>1739010727424</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1739010727424</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fix: 이전 커밋에 서술된 문제 해결 9차 시도">
+      <option name="closed" value="true" />
+      <created>1739010849468</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1739010849468</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value=" post: 데브클럽 네트워킹 후기" />
+    <MESSAGE value=" fix: 이전 커밋에 서술된 문제 해결 2차 시도" />
+    <MESSAGE value=" fix: 이전 커밋에 서술된 문제 해결 3차 시도" />
+    <MESSAGE value="Revert &quot; fix: 이전 커밋에 서술된 문제 해결 3차 시도&quot;&#10;&#10;This reverts commit 9f45d25b2dc945ca5032e1fab70812f5dafe74fd." />
+    <MESSAGE value=" fix: 이전 커밋에 서술된 문제 해결 4차 시도" />
+    <MESSAGE value="fix: 이전 커밋에 서술된 문제 해결 4차 시도" />
+    <MESSAGE value="fix: 이전 커밋에 서술된 문제 해결 5차 시도" />
+    <MESSAGE value="fix: img에 alt 속성 없는 문제 해결 시도" />
+    <MESSAGE value="fix: 커밋 메세지에 한글 금지된 것인지 테스트" />
+    <MESSAGE value="fix: 문제 해결을 위한 파일 청소" />
+    <MESSAGE value="fix: 이전 커밋에 서술된 문제 해결 6차 시도" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/main'" />
+    <MESSAGE value="fix: 이전 커밋에 서술된 문제 해결 7차 시도" />
+    <MESSAGE value="fix: 이전 커밋에 서술된 문제 해결 8차 시도" />
+    <MESSAGE value="fix: 이전 커밋에 서술된 문제 해결 9차 시도" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: 이전 커밋에 서술된 문제 해결 9차 시도" />
+  </component>
+</project>
