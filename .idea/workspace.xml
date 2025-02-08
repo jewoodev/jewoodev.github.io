@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50ec7f33-2cd8-41a8-a0c0-2a58e7ecb718" name="Changes" comment="fix: 이전 커밋에 서술된 문제 해결 9차 시도" />
+    <list default="true" id="50ec7f33-2cd8-41a8-a0c0-2a58e7ecb718" name="Changes" comment="fix: 10th attempt to resolve the issue described in the previous commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -167,7 +167,39 @@
       <option name="project" value="LOCAL" />
       <updated>1739010849468</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix: 9th attempt to resolve the issue described in the previous commit">
+      <option name="closed" value="true" />
+      <created>1739010979768</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1739010979768</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fix: File cleanup for issue resolution">
+      <option name="closed" value="true" />
+      <created>1739011140066</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1739011140066</updated>
+    </task>
+    <task id="LOCAL-00016" summary="fix: 10th attempt to resolve the issue described in the previous commit">
+      <option name="closed" value="true" />
+      <created>1739011176142</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1739011176142</updated>
+    </task>
+    <task id="LOCAL-00017" summary="fix: 10th attempt to resolve the issue described in the previous commit">
+      <option name="closed" value="true" />
+      <created>1739011226644</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1739011226644</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,6 +243,9 @@
     <MESSAGE value="fix: 이전 커밋에 서술된 문제 해결 7차 시도" />
     <MESSAGE value="fix: 이전 커밋에 서술된 문제 해결 8차 시도" />
     <MESSAGE value="fix: 이전 커밋에 서술된 문제 해결 9차 시도" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: 이전 커밋에 서술된 문제 해결 9차 시도" />
+    <MESSAGE value="fix: 9th attempt to resolve the issue described in the previous commit" />
+    <MESSAGE value="fix: File cleanup for issue resolution" />
+    <MESSAGE value="fix: 10th attempt to resolve the issue described in the previous commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: 10th attempt to resolve the issue described in the previous commit" />
   </component>
 </project>
