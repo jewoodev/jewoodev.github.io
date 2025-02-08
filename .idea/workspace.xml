@@ -4,203 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="50ec7f33-2cd8-41a8-a0c0-2a58e7ecb718" name="Changes" comment="fix: 11th attempt to resolve the issue described in the previous commit">
-      <change afterPath="$PROJECT_DIR$/.devcontainer/devcontainer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.devcontainer/post-create.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/DISCUSSION_TEMPLATE/general.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/DISCUSSION_TEMPLATE/ideas.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/DISCUSSION_TEMPLATE/q-a.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/FUNDING.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/bug_report.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/config.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/feature_request.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/PULL_REQUEST_TEMPLATE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/codeql/codeql-config.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/dependabot.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/workflows/cd.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/workflows/codeql.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/workflows/commitlint.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/workflows/pr-filter.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/workflows/publish.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/workflows/scripts/pr-filter.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/workflows/stale.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.github/workflows/starter/pages-deploy.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitmodules" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.husky/commit-msg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.markdownlint.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.nojekyll" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.stylelintrc.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vscode/extensions.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.vscode/tasks.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/authors.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/contact.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/ar.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/bg-BG.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/cs-CZ.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/de-DE.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/el-GR.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/en.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/es-ES.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/fi-FI.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/fr-FR.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/hu-HU.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/id-ID.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/it-IT.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/ko-KR.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/my-MM.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/nl-NL.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/pt-BR.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/ru-RU.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/sl-SI.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/sv-SE.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/th.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/tr-TR.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/uk-UA.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/vi-VN.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/zh-CN.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/locales/zh-TW.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/media.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/origin/basic.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/origin/cors.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_data/share.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/analytics/cloudflare.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/analytics/fathom.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/analytics/goatcounter.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/analytics/google.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/analytics/matomo.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/analytics/umami.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/comment.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/comments/disqus.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/comments/giscus.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/comments/utterances.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/datetime.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/embed/audio.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/embed/bilibili.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/embed/twitch.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/embed/video.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/embed/youtube.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/favicons.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/footer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/head.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/js-selector.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/jsdelivr-combine.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/lang.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/language-alias.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/media-url.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/metadata-hook.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/notification.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/origin-type.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/pageviews/goatcounter.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/post-description.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/post-nav.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/post-paginator.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/post-sharing.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/read-time.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/refactor-content.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/related-posts.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/search-loader.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/search-results.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/sidebar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/toc-status.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/toc.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/topbar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/trending-tags.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_includes/update-list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/categories.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/commons.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/home.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/misc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/components.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/components/back-to-top.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/components/category-collapse.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/components/clipboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/components/img-loading.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/components/img-popup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/components/locale-datetime.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/components/mermaid.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/components/mode-toggle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/components/search-display.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/components/toc.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/components/toc/toc-desktop.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/components/toc/toc-mobile.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/components/tooltip-loader.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/layouts.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/layouts/basic.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/layouts/sidebar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/layouts/topbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/modules/theme.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/post.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/pwa/app.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_javascript/pwa/sw.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_layouts/archives.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_layouts/categories.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_layouts/category.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_layouts/compress.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_layouts/default.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_layouts/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_layouts/page.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_layouts/post.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_layouts/tag.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_layouts/tags.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_plugins/posts-lastmod-hook.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/abstracts/_breakpoints.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/abstracts/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/abstracts/_mixins.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/abstracts/_placeholders.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/abstracts/_variables.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/base/_base.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/base/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/base/_reset.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/base/_syntax.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/base/_typography.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/components/_buttons.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/components/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/components/_popups.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/layout/_footer.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/layout/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/layout/_panel.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/layout/_sidebar.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/layout/_topbar.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/main.bundle.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/main.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/pages/_archives.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/pages/_categories.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/pages/_category-tag.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/pages/_home.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/pages/_index.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/pages/_post.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/pages/_search.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/pages/_tags.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/themes/_dark.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_sass/themes/_light.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_tabs/about.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_tabs/archives.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_tabs/categories.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/_tabs/tags.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/CHANGELOG.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/CODE_OF_CONDUCT.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/CONTRIBUTING.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/SECURITY.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jekyll-theme-chirpy.gemspec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/purgecss.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/rollup.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/init.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/release.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/run.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tools/test.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="50ec7f33-2cd8-41a8-a0c0-2a58e7ecb718" name="Changes" comment="fix: 11th attempt to resolve the issue described in the previous commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -403,7 +207,23 @@
       <option name="project" value="LOCAL" />
       <updated>1739011594087</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="fix: 11th attempt to resolve the issue described in the previous commit">
+      <option name="closed" value="true" />
+      <created>1739012411534</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1739012411534</updated>
+    </task>
+    <task id="LOCAL-00020" summary="fix: 11th attempt to resolve the issue described in the previous commit">
+      <option name="closed" value="true" />
+      <created>1739012420011</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1739012420011</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
