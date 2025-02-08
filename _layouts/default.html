@@ -13,7 +13,7 @@ layout: compress
 {% endif %}
 
 <!-- `site.alt_lang` can specify a language different from the UI -->
-<html lang="{{ page.lang | default: site.alt_lang | default: site.lang }}" {{ prefer_mode }}>
+<html lang="{{ site.alt_lang | default: site.lang }}" {{ prefer_mode }}>
   {% include head.html %}
 
   <body>
@@ -33,7 +33,7 @@ layout: compress
           </main>
 
           <!-- panel -->
-          <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 text-muted">
+          <aside aria-label="Panel" id="panel-wrapper" class="col-xl-3 ps-2 mb-5 text-muted">
             <div class="access">
               {% include_cached update-list.html lang=lang %}
               {% include_cached trending-tags.html lang=lang %}
@@ -68,19 +68,20 @@ layout: compress
       </aside>
     </div>
 
-    <div id="mask" class="d-none position-fixed w-100 h-100 z-1"></div>
+    <div id="mask"></div>
 
     {% if site.pwa.enabled %}
       {% include_cached notification.html lang=lang %}
     {% endif %}
 
-    <!-- Embedded scripts -->
+    <!-- JavaScripts -->
 
-    {% for _include in layout.script_includes %}
-      {% assign _include_path = _include | append: '.html' %}
-      {% include {{ _include_path }} %}
-    {% endfor %}
+    {% include js-selector.html %}
 
-    {% include_cached search-loader.html lang=lang %}
+    {% if page.mermaid %}
+      {% include mermaid.html %}
+    {% endif %}
+
+    {% include_cached search-loader.html %}
   </body>
 </html>
