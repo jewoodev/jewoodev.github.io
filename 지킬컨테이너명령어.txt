@@ -1,1 +1,5 @@
+# 이미지 생성
+docker build -t jekyll .
+
+# 컨테이너 run
 docker run --name blog --volume="${PWD}:/srv/jekyll" -p 4000:4000 -d jekyll

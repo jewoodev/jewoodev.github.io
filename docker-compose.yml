@@ -1,0 +1,11 @@
+services:
+  blog:
+    image: jekyll:latest
+    container_name: blog
+    restart: on-failure
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/srv/jekyll
+
+
