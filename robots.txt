@@ -1,0 +1,7 @@
+User-agent: *
+
+Allow: /
+
+Disallow: /norobots/
+
+Sitemap: https://jewoodev.github.io/sitemap.xml
