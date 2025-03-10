@@ -9,7 +9,7 @@ tags : [WSL2]
 필자의 PC 환경은 아래와 같습니다.
 - OS : Windows 10 Pro
 
-# WSL 란?
+## WSL 란?
 Windows 10 OS 에서 리눅스 운영체제의 쉘, 시스템을 사용할 수 있도록 지원하는 기능입니다.
 
 개발, 코딩, 테스트, 서버 관리 등 많은 작업을 가상화를 통해서 리눅스를 띄우고 진행하는데, 이런 과정에 도움을 주는 좋은 기능이라고 생각하시면 될 거 같습니다. 
@@ -25,7 +25,7 @@ WSL2는 WSL1과 다르게 Hyper-V를 이용해 경량 VM 기술을 사용합니�
 
 이번 글에서는 WSL2 를 이용해보도록 하겠습니다.
 
-# Windows 10에 WSL2 설치하기
+## Windows 10에 WSL2 설치하기
 WSL을 설치하려면 Windows 10의 20H1 버전 이상이어야 가능합니다. 만약에 해당 버전보다 낮은 상태라면 Windows Update 설정을 이용해 최신 버전으로 업데이트해주시기 바랍니다.
 
 WSL2를 설치하기 위해서는 가상 터미널을 이용해야 합니다. 어떤 가상 터미널을 이용하면 되는지는 선택사항이지만, Windows Terminal을 추천합니다. Microsoft Store에서 download 할 수 있으며, Microsoft Store는 Window 검색 란에서 쉽게 찾을 수 있습니다.
@@ -36,7 +36,7 @@ WSL2를 설치하기 위해서는 가상 터미널을 이용해야 합니다. �
 
 그럼, 가상 터미널을 관리자 권한으로 실행해주세요. 가상 터미널 아이콘을 우측 마우스 클릭을 해서 나오는 옵션 중에 '관리자 권한으로 실행' 을 선택하시면 됩니다.
 
-# DISM으로 WSL 관련 기능 활성화
+## DISM으로 WSL 관련 기능 활성화
 
 DISM(배포 이미지 서비스 및 관리) 명령어로 Microsoft-Windows-Subsystem-Linux 기능을 활성화합니다.
 
@@ -64,7 +64,7 @@ $ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nor
 
 작업이 정상적으로 완료되었는지, 메시지를 꼭 확인해주세요. 터미널이 관리자 권한이 아닌 경우 작업이 실패합니다. 작업이 정상 완료되었다면 이 시점에 재부팅을 한 번 해줍니다.
 
-# Microsoft Store에서 리눅스 설치
+## Microsoft Store에서 리눅스 설치
 
 대망의 Linux 설치를 할 차례입니다! 준비되셨나요? ```Window key + s``` 를 눌러 가상 터미널을 관리자 권한으로 실행해주세요. 켜뒀던 터미널이 있다면 하지 않으셔도 좋습니다.
 

@@ -13,7 +13,7 @@ Pandas 패키지는 이러한 데이터를 다루기 위한 Series 클래스와 
 - series : 열
 - dataframe : table
 
-# DataFrame class
+## DataFrame class
 DataFrame은 Pandas의 주요 데이터 구조입니다. label된 row와 column, 두 개의 축을 갖습니다.  
 산술 연산은 row와 column 모두 적용됩니다. Series 객체를 갖는 dictionary라고 생각하면 비슷합니다.   
 첫 인자로 data, 두 번째 인자로 index를 전달합니다.  
@@ -21,7 +21,7 @@ DataFrame은 Pandas의 주요 데이터 구조입니다. label된 row와 column,
 [pandas.DataFrame document link](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame)  
 DataFrame은 각 column 마다 자료형이 다를 수 있습니다.
 
-# DataFrame 생성
+## DataFrame 생성
 Series가 1차원 벡터 데이터에 행방향 index(row index)를 붙인 것이라면  
 DataFrame 클래스는 2차원 행렬 데이터에 index를 붙인 것과 형태가 비슷합니다.  
 row와 column을 갖는 2차원이므로 각각의 행 데이터의 이름이 되는  
@@ -34,9 +34,9 @@ DataFrame을 만드는 방법은 다양합니다. 가장 간단한 방법은 다
 ![image](https://user-images.githubusercontent.com/105477856/221209793-e9161917-fb8c-415e-ac95-ed36a8e4d6bf.png)  
 ![image](https://user-images.githubusercontent.com/105477856/221209883-010f312a-0bf3-47e9-b366-60907d6edd45.png)  
 
-# DataFrame Indexing
+## DataFrame Indexing
 
-## DataFrame Indexing - Column
+### DataFrame Indexing - Column
 DataFrame은 column label을 키로, column Series를 값으로 가지는 딕셔너리와 비슷합니다.  
 따라서 DataFrame을 인덱싱을 할 때도 column label을 키(key)로 생각하여 인덱싱을 할 수 있습니다.  
 index로 label 값을 하나만 넣으면 Series 객체가 반환됩니다.  
@@ -49,25 +49,26 @@ label의 배열 또는 리스트로 인덱싱하면 DataFrame 타입이 반환�
 - 원래부터 문자열이 아닌 정수형 column index를 가지는 경우에는 index 값으로 정수를 사용할 수 있습니다.  
 - 별도의 columns 키워드 인수를 전달하지 않으면 RangeIndex를 기본 값으로 부여합니다.
 
-## DataFrame Indexing - Row
+### DataFrame Indexing - Row
 만약 row 단위로 인덱싱을 하고자 하면 항상 슬라이싱(slicing)을 해야 합니다. index의 값이 문자 label이면 label 슬라이싱도 가능합니다.  
 ![image](https://user-images.githubusercontent.com/105477856/221211119-d7f6d2a7-78fd-4eed-9e78-952846db2d1a.png)  
 ![image](https://user-images.githubusercontent.com/105477856/221211183-e2005040-947c-4eab-bfc8-e089c37f73ae.png)  
-## DataFrame row 인덱싱할 경우
+
+### DataFrame row 인덱싱할 경우
 KeyError가 발생합니다.  
 ![image](https://user-images.githubusercontent.com/105477856/221211408-cd39ce91-1edc-452f-9d85-eed372b4aaa5.png)  
 
-## DataFrame 개별 데이터 인덱싱
+### DataFrame 개별 데이터 인덱싱
 DataFrame에서 column label로 인덱싱하면 Series가 됩니다. 이 Series를 다시 row label로 인덱싱하면 개별 데이터가 나옵니다.  
 ![image](https://user-images.githubusercontent.com/105477856/221211566-824391d2-ca45-452f-b217-dc925006742b.png)  
 
-## DataFrame 개별 데이터 인덱싱, 역순으로
+### DataFrame 개별 데이터 인덱싱, 역순으로
 앞서 공부했듯 DataFrame에서 row label로 인덱싱하면 KeyError가 발생됩니다. 그래도 굳이 row 단위로 먼저 시도하려면 슬라이싱해야 합니다.  
 그 때 반환 타입은 DataFrame이 됩니다. 이 DataFrame을 다시 column label로 인덱싱하면 개별 데이터가 아닌 Series 객체가 나옵니다. 즉 역순으로 하는 것은 썩 효율적이지 않음을 알 수 있습니다.  
 ![image](https://user-images.githubusercontent.com/105477856/221211826-29752d0f-3c20-4bd8-aa29-b022d70c2852.png)  
 
 
-## Dataframe Indexing - Boolean
+### Dataframe Indexing - Boolean
 Boolean Series로 row를 기준으로 인덱싱할 수 있습니다.  
 아래 예제에서는 df.A(영어 문자열은 속성처럼 접근 가능)의 값 중 15 초과인 결과를 Boolean Series 값을 얻을 수 있습니다.   
 이 Boolean Series를 활용해 인덱싱하고 있습니다. 이는 데이터베이스와 같이 인덱스를 가지는 Boolean Series도 row를 선택하는 인덱싱 값으로 쓸 수 있습니다.  
@@ -77,7 +78,7 @@ df.loc[df.A > 15]
 df.loc[df.A > 10, ['C', 'D']]
 ```
 
-# Pandas 데이터 CSV로 출력하기
+## Pandas 데이터 CSV로 출력하기
 데이터 출력하기에 앞서 우선 다음과 같은 DataFrame을 만들어 봅시다.   
 데이터를 csv 파일로 출력할 땐 to_csv() 메서드를 활용합니다. 첫 인자로는 파일 경로를 입력합니다. 현재 만든DataFrame의 index는 의미 없는 값이므로 출력할 때 배제하겠습니다.  
 to_csv()의 기본값 인자인 index의 default가 True이니 index=False 키워드를 활용하여 설정해줘야 합니다.  
@@ -115,7 +116,7 @@ na_rep 키워드 인수를 사용해서 NaN 표시값을
 ![image](https://user-images.githubusercontent.com/105477856/221333703-654a2bfc-f5eb-45c4-be94-42789941a3c3.png)  
 > 데이터간의 구분자를 바꾸고 싶을 땐 sep 인수로 구분자를 바꿀 수 있습니다.  
 
-# Pandas csv로부터 데이터 입력하기
+## Pandas csv로부터 데이터 입력하기
 csv 파일로부터 데이터를 불러오는 작업은 read_csv() 메서드를 사용하면 가능합니다.  
 ![image](https://user-images.githubusercontent.com/105477856/221333290-a9f8037e-2bc9-47e7-8d0a-f3a3c94c9895.png)  
 - - -
@@ -139,11 +140,11 @@ pd.read_csv('sample1-19-2.csv', names=['c1', 'c2', 'c3'])
 데이터로 불러올 자료의 특정한 값을 NaN으로 취급하고 싶으면 na_values 인수에 
 NaN 값으로 취급할 값을 넣습니다.  
 
-# DataFrame 데이터 개수 세기
+## DataFrame 데이터 개수 세기
 DataFrame 객체에 count() 메서드를 사용하면 각 column마다의 데이터 개수를 셉니다. 그리고 그 결과를 Series로 반환합니다.  
 count() 메서드는 NaN 값을 제외하고 개수를 세기 때문에 데이터에서 값이 누락된 부분(NaN)을 찾을 때 유용합니다.   
 
-# DataFrame 카테고리 값 세기
+## DataFrame 카테고리 값 세기
 DataFrame 값이 정수, 문자열, 카테고리 값인 경우에도 value_counts() 메서드를 이용해 각각의 값이 나온 횟수를 셀 수 있습니다.  
 DataFrame에 사용할 때는 리스트 형태의 값을 첫 인자로 전달합니다. 이 리스트는 column label을 요소로 갖습니다. NaN 값이 있는 row는 개수로 안 칩니다.  
 ![image](https://user-images.githubusercontent.com/105477856/221338204-cf569f1c-7778-4d84-92f0-868645eed924.png)
@@ -152,7 +153,7 @@ label 값을 문자열로 하나만 전달해도 됩니다. 그러면 해당 col
 > **Tip**   
 > value_counts 함수에 normalize 인자로 True를 주면 개수가 아닌 비율을 반환해줍니다.
 
-# DataFrame 정렬
+## DataFrame 정렬
 DataFrame에서 sort_values 메서드를 사용하려면 by 키워드 인수를 활용하여 DataFrame의 정렬 기준이 되는 column을 지정해 주어야 합니다.  
 ![image](https://user-images.githubusercontent.com/105477856/221333962-dc05a18b-ad0e-42fc-80f6-a6676b502e32.png)  
 DataFrame은 테이블 형태이므로 1개 column만 정렬하는 것이 아닌 1개 column을 기준으로 다른 column도 모두 정렬합니다.  
@@ -161,25 +162,25 @@ by 키워드 인수에 전달할 값으로 리스트 자료형의 형태로 지�
 ![image](https://user-images.githubusercontent.com/105477856/221333976-4122f78f-b6c8-45cf-9e35-027dce2ab10f.png)  
 - 데이터프레임에선 로우 단위로 정렬을 합니다. 한 컬럼에서 정렬을 하며 데이터의 위치가 바뀔 때 로우 단위로 다른 컬럼의 데이터도 위치가 바뀐다는 것입니다.
   
-# DataFrame row/column 합계
+## DataFrame row/column 합계
 row과 column의 합계를 구할 때는 sum(axis) 메서드를 사용합니다.  
 axis 인수에는 합계로 인해 없어지는 방향축(0=row, 1=column)을 지정합니다. row의 집계를 구할 때는 sum(axis=1) 메서드를 사용합니다.  
 ![image](https://user-images.githubusercontent.com/105477856/221334004-5fa719c2-0d65-4e62-9e44-f154b201ef80.png)  
 ![image](https://user-images.githubusercontent.com/105477856/221334013-da4372a3-3ae2-467b-b036-47bf70cc29a7.png)  
 ![image](https://user-images.githubusercontent.com/105477856/221334030-d9d96a07-1243-4c28-9663-152806c6de38.png)  
 
-# DataFrame row/column 평균
+## DataFrame row/column 평균
 평균을 구할 때는 mean()메서드를 사용합니다.  
 mean() 메서드는 평균을 구하며 앞서 설명한 sum() 메서드와 사용법이 같습니다. axis 인수에는 집계로 인해 없어지는 방향축(0=row, 1=column)을 지정합니다.  
 ![image](https://user-images.githubusercontent.com/105477856/221334040-d30473d0-e34e-449f-b7ec-06cf6e82d7bf.png)  
 
-# DataFrame apply() 메서드
+## DataFrame apply() 메서드
 DataFrame에 대해 Function을 적용하고 싶다면 apply()를 활용하면 좋습니다. 이 메서드는 첫 인자로 함수를 필수 값으로 받습니다. 경우에 따라 두 번째 인자로 axis를 사용할 수 있습니다. axis 인자는 0이 default 입니다.   
 - axis가 0 or ‘index’인 경우 각 column에 대해 함수를 적용합니다.
 - axis가 1 or ‘columns’인 경우 각 row에 대해 함수를 적용합니다.   
   ![image](https://user-images.githubusercontent.com/105477856/221334069-700f4d37-7c54-42b6-8c28-0d641a139bf4.png)  
   
-# NumPy Universal function
+## NumPy Universal function
 넘파이의 Universal function은 줄여서 ufunc이라고 합니다. 이 함수는 ndarray 전체에 요소 요소마다 적용됩니다.  
 함수의 argument와 return의 결과가 동일한 크기로 나오는 것이 특징입니다.  
 [document link](https://numpy.org/doc/stable/user/basics.ufuncs.html#ufuncs-basics)  
@@ -223,7 +224,7 @@ df3.apply(lambda x: x.max() - x.min(), axis=1) # row에 대해 적용하고 싶�
 # 어떤 값이 얼마나 사용되었는지 알고 싶다면
 df3.apply(pd.value_counts)
 ```
-# DataFrame astype() 메서드
+## DataFrame astype() 메서드
 astype() 메서드로 column의 자료형을 바꾸는 것도 가능합니다. 
 다만 1.3.0 버전부터 timezone-naive dtype을 timezone-aware dtype으로 변경하는 것은 불가하다고 합니다.  
 대신 Series.dt.tz_localize()를 사용해야 합니다.  
@@ -231,7 +232,7 @@ astype() 메서드로 column의 자료형을 바꾸는 것도 가능합니다.
 출처:https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.astype.html[링크](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.astype.html)  
 - astype()메서드는 in-place 가 아니라는 점을 기억해두세요.  
 
-# DataFrame 실수 값을 카테고리 값으로 변환
+## DataFrame 실수 값을 카테고리 값으로 변환
 실수 값을 크기 기준으로 하여 카테고리 값으로 변환하고 싶을 때는 다음과 같은 명령을 사용합니다.
 - cut: 실수 값의 경계선을 지정하는 경우
   - x = 1차원 형태의 배열 형태가 옵니다.

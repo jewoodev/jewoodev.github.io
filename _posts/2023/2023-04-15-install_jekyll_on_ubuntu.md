@@ -5,11 +5,11 @@ categories : [Web, Jekyll]
 tags : [Install]
 ---
 
-# Jekyll 이란?
+## Jekyll 이란?
 
 지금 제가 글을 적고 있는 이 블로그는 Jekyll 을 사용해서 만들었습니다. Jekyll 은 정적 사이트 생성기로 깃헙 설립자 중 한 분이 Ruby 언어를 이용해 만든 프레임워크인데요. 깃헙 자체적으로 Jekyll Contents Management System을 내장하고 있어서 깃헙을 이용해 호스팅하기 적합합니다.
 
-# Jekyll 설치
+## Jekyll 설치
 
 기본적으로 Ruby와 Jekyll 모두 Linux 에서 개발된 것들이기 때문에, Window 에서 사용하기에 조금의 어려움이 있습니다. 필자는 Ubuntu 20.04 에 Jekyll 을 설치합니다. 
 

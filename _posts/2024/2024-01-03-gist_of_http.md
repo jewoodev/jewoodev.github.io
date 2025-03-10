@@ -12,7 +12,7 @@ use_math : true
 
 이 녀석이 뭔지 알아보자.
 
-# HTTP
+## HTTP
 
 **H**yper**T**ext **T**ransfer **P**rotocol
 
