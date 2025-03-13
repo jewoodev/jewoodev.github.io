@@ -13,7 +13,8 @@ tags : [PostgreSQL]
 
 계속해서 겪었던 오류는 해당 환경에서 PostgreSQL을 설치하고 구동할 때 "/var/run/postgresql/.s.pgsql.5432" 이라는 파일이 없는 탓이었습니다. 아무래도 Ubuntu 22.04 버전에 PostgreSQL 설치 오류 버그가 있는게 아닐까 싶습니다.
 
-# PostgresSQL 완전 삭제
+## PostgresSQL 완전 삭제
+
 1. postgresql이 설치된 기본 폴더를 삭제합니다.
 ```bash
 sudo rm -rf /var/lib/postgresql

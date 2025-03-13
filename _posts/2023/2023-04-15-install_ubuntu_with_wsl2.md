@@ -94,5 +94,5 @@ Ubuntu 앞의 * 가 붙어 있는건 디폴트 머신임을 의미합니다. 그
 이제 설치가 완료되었습니다. Ubuntu 를 사용하실 수 있습니다 :)
 
 
-# 참고 자료
+## 참고 자료
 [https://blog.dalso.org/linux/wsl2/10789](https://blog.dalso.org/linux/wsl2/10789)

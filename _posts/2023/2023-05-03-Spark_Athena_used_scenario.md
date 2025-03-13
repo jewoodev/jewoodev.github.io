@@ -7,7 +7,9 @@ tags : [Architecture]
 
 > 이 글은, [프로그래머스에서 진행되는 실리콘밸리에서 날아온 데이터 엔지니어링 키트 with Python](https://school.programmers.co.kr/learn/courses/16448/16448-%EB%9D%BC%EC%9D%B4%EB%B8%8C12%EA%B8%B0-%EC%8B%A4%EB%A6%AC%EC%BD%98%EB%B0%B8%EB%A6%AC%EC%97%90%EC%84%9C-%EB%82%A0%EC%95%84%EC%98%A8-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4%EB%A7%81-%EC%8A%A4%ED%83%80%ED%84%B0-%ED%82%A4%ED%8A%B8-with-python)에서 배운 내용을 바탕으로 이루어져 있습니다.
 
-# 비구조화된 데이터 처리
+<br>
+
+## 비구조화된 데이터 처리
 
 ![image](https://user-images.githubusercontent.com/105477856/235756087-006c1edb-aeb9-4bf7-8cf8-cb88d91abe41.png)
 
