@@ -19,7 +19,7 @@ title: Jewoo Sin # the main title
 tagline: 작은 점을 모아, 선이 될 때까지 # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  최고의 개발자가 될 개발자의 꾸준한 발자취
+  최고의 개발자가 될 개발자의 꾸준한 발자취 | Back-end, Data engineering
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
@@ -38,11 +38,9 @@ social:
   email: jewoos15@naver.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-#    - https://twitter.com/username # change to your twitter homepage
     - https://github.com/jewoodev # change to your github homepage
-    - https://www.linkedin.com/in/%EC%A0%9C%EC%9A%B0-%EC%8B%A0-b67935328/
     # Uncomment below to add more social links
-    # - https://www.facebook.com/username
+    - https://www.linkedin.com/in/%EC%A0%9C%EC%9A%B0-%EC%8B%A0-b67935328/
 
 # Site Verification Settings
 webmaster_verifications:
