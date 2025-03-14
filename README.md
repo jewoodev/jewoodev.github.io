@@ -1,43 +1,166 @@
-# Chirpy Starter
+# jewoodev.github.io
 
-[![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)][gem]&nbsp;
-[![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
+- My Github Blog Powered by Jekyll & Chirpy
+- Jan 27, 2023 ~ Present
 
-When installing the [**Chirpy**][chirpy] theme through [RubyGems.org][gem], Jekyll can only read files in the folders
-`_data`, `_layouts`, `_includes`, `_sass` and `assets`, as well as a small part of options of the `_config.yml` file
-from the theme's gem. If you have ever installed this theme gem, you can use the command
-`bundle info --path jekyll-theme-chirpy` to locate these files.
+## Set up
 
-The Jekyll team claims that this is to leave the ball in the user’s court, but this also results in users not being
-able to enjoy the out-of-the-box experience when using feature-rich themes.
+- Ruby Version: 3.2.2
+- Bundler Version: 2.6.2
 
-To fully use all the features of **Chirpy**, you need to copy the other critical files from the theme's gem to your
-Jekyll site. The following is a list of targets:
+## Bundler | Gem list
 
-```shell
-.
-├── _config.yml
-├── _plugins
-├── _tabs
-└── index.html
 ```
-
-To save you time, and also in case you lose some files while copying, we extract those files/configurations of the
-latest version of the **Chirpy** theme and the [CD][CD] workflow to here, so that you can start writing in minutes.
-
-## Usage
-
-Check out the [theme's docs](https://github.com/cotes2020/jekyll-theme-chirpy/wiki).
-
-## Contributing
-
-This repository is automatically updated with new releases from the theme repository. If you encounter any issues or want to contribute to its improvement, please visit the [theme repository][chirpy] to provide feedback.
-
-## License
-
-This work is published under [MIT][mit] License.
-
-[gem]: https://rubygems.org/gems/jekyll-theme-chirpy
-[chirpy]: https://github.com/cotes2020/jekyll-theme-chirpy/
-[CD]: https://en.wikipedia.org/wiki/Continuous_deployment
-[mit]: https://github.com/cotes2020/chirpy-starter/blob/master/LICENSE
+Ascii85 (2.0.1)
+addressable (2.8.7)
+  public_suffix (>= 2.0.2, < 7.0)
+afm (0.2.2)
+async (2.23.0)
+  console (~> 1.29)
+  fiber-annotation
+  io-event (~> 1.9)
+  metrics (~> 0.12)
+  traces (~> 0.15)
+base64 (0.2.0)
+bigdecimal (3.1.9)
+colorator (1.1.0)
+concurrent-ruby (1.3.5)
+console (1.30.0)
+  fiber-annotation
+  fiber-local (~> 1.1)
+  json
+csv (3.3.2)
+em-websocket (0.5.3)
+  eventmachine (>= 0.12.9)
+  http_parser.rb (~> 0)
+ethon (0.16.0)
+  ffi (>= 1.15.0)
+eventmachine (1.2.7)
+ffi (1.17.1-arm64-darwin)
+ffi (1.17.1-x86_64-darwin)
+ffi (1.17.1-x86_64-linux-gnu)
+fiber-annotation (0.2.0)
+fiber-local (1.1.0)
+  fiber-storage
+fiber-storage (1.0.0)
+forwardable-extended (2.6.0)
+google-protobuf (4.30.0-arm64-darwin)
+  bigdecimal
+  rake (>= 13)
+google-protobuf (4.30.0-x86_64-darwin)
+  bigdecimal
+  rake (>= 13)
+google-protobuf (4.30.0-x86_64-linux)
+  bigdecimal
+  rake (>= 13)
+hashery (2.1.2)
+html-proofer (5.0.10)
+  addressable (~> 2.3)
+  async (~> 2.1)
+  nokogiri (~> 1.13)
+  pdf-reader (~> 2.11)
+  rainbow (~> 3.0)
+  typhoeus (~> 1.3)
+  yell (~> 2.0)
+  zeitwerk (~> 2.5)
+http_parser.rb (0.8.0)
+i18n (1.14.7)
+  concurrent-ruby (~> 1.0)
+io-event (1.9.0)
+jekyll (4.4.1)
+  addressable (~> 2.4)
+  base64 (~> 0.2)
+  colorator (~> 1.0)
+  csv (~> 3.0)
+  em-websocket (~> 0.5)
+  i18n (~> 1.0)
+  jekyll-sass-converter (>= 2.0, < 4.0)
+  jekyll-watch (~> 2.0)
+  json (~> 2.6)
+  kramdown (~> 2.3, >= 2.3.1)
+  kramdown-parser-gfm (~> 1.0)
+  liquid (~> 4.0)
+  mercenary (~> 0.3, >= 0.3.6)
+  pathutil (~> 0.9)
+  rouge (>= 3.0, < 5.0)
+  safe_yaml (~> 1.0)
+  terminal-table (>= 1.8, < 4.0)
+  webrick (~> 1.7)
+jekyll-archives (2.3.0)
+  jekyll (>= 3.6, < 5.0)
+jekyll-include-cache (0.2.1)
+  jekyll (>= 3.7, < 5.0)
+jekyll-paginate (1.1.0)
+jekyll-redirect-from (0.16.0)
+  jekyll (>= 3.3, < 5.0)
+jekyll-sass-converter (3.1.0)
+  sass-embedded (~> 1.75)
+jekyll-seo-tag (2.8.0)
+  jekyll (>= 3.8, < 5.0)
+jekyll-sitemap (1.4.0)
+  jekyll (>= 3.7, < 5.0)
+jekyll-theme-chirpy (7.2.4)
+  jekyll (~> 4.3)
+  jekyll-archives (~> 2.2)
+  jekyll-include-cache (~> 0.2)
+  jekyll-paginate (~> 1.1)
+  jekyll-redirect-from (~> 0.16)
+  jekyll-seo-tag (~> 2.8)
+  jekyll-sitemap (~> 1.4)
+jekyll-watch (2.2.1)
+  listen (~> 3.0)
+json (2.10.1)
+kramdown (2.5.1)
+  rexml (>= 3.3.9)
+kramdown-parser-gfm (1.1.0)
+  kramdown (~> 2.0)
+liquid (4.0.4)
+listen (3.9.0)
+  rb-fsevent (~> 0.10, >= 0.10.3)
+  rb-inotify (~> 0.9, >= 0.9.10)
+mercenary (0.4.0)
+metrics (0.12.2)
+nokogiri (1.18.3-arm64-darwin)
+  racc (~> 1.4)
+nokogiri (1.18.3-x86_64-darwin)
+  racc (~> 1.4)
+nokogiri (1.18.3-x86_64-linux-gnu)
+  racc (~> 1.4)
+pathutil (0.16.2)
+  forwardable-extended (~> 2.6)
+pdf-reader (2.14.1)
+  Ascii85 (>= 1.0, < 3.0, != 2.0.0)
+  afm (~> 0.2.1)
+  hashery (~> 2.0)
+  ruby-rc4
+  ttfunk
+public_suffix (6.0.1)
+racc (1.8.1)
+rainbow (3.1.1)
+rake (13.2.1)
+rb-fsevent (0.11.2)
+rb-inotify (0.11.1)
+  ffi (~> 1.0)
+rexml (3.4.1)
+rouge (4.5.1)
+ruby-rc4 (0.1.5)
+safe_yaml (1.0.5)
+sass-embedded (1.85.1)
+  google-protobuf (~> 4.29)
+  rake (>= 13)
+sass-embedded (1.85.1-arm64-darwin)
+  google-protobuf (~> 4.29)
+sass-embedded (1.85.1-x86_64-darwin)
+  google-protobuf (~> 4.29)
+terminal-table (3.0.2)
+  unicode-display_width (>= 1.1.1, < 3)
+traces (0.15.2)
+ttfunk (1.8.0)
+  bigdecimal (~> 3.1)
+typhoeus (1.4.1)
+  ethon (>= 0.9.0)
+unicode-display_width (2.6.0)
+webrick (1.9.1)
+yell (2.2.2)
+zeitwerk (2.6.18)
+```
