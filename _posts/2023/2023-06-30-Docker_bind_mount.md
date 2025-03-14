@@ -5,7 +5,7 @@ categories : [Docker, Command]
 tags : [Summary]
 ---
 
-# 파일 이동
+## 파일 이동
 ```bash
 # 로컬에서 컨테이너로 파일을 복사
 docker cp [호스트 경로] [컨테이너 이름:컨테이너 경로]
@@ -14,7 +14,7 @@ docker cp [호스트 경로] [컨테이너 이름:컨테이너 경로]
 docker cp [컨테이너 이름:컨테이너 경로] [호스트 경로]
 ```
 
-# 볼륨 마운트
+## 볼륨 마운트
 ```bash
 docker run -itd --name [컨테이너 이름] --mount "$(pwd)"/target:/[컨테이너 위치] [이미지 이름:버전]
 ```
