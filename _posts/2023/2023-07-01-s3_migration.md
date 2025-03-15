@@ -8,9 +8,7 @@ use_math : true
 
 이번 글에서는 다른 계정 간에 S3 객체를 이전하는 방법을 알아보자.
 
-처리 과정을 이해하기 쉽게 하기 위해 계정 A를 복사할 파일의 출발지, 계정 B를 복사된 파일의 목적지라고 서로 약속하자.
-
-#  워크로드
+## 1. 워크로드
 
 - 계정 A: 복사할 파일의 출발지 (Source)
 - 계정 B: 복사된 파일의 목적지 (Target)
@@ -19,7 +17,7 @@ use_math : true
 
 이 방법은 S3의 모든 객체를 가져오는 것 뿐만 아니라 폴더의 구조까지 복사해 올 수 있기 때문에 기존 계정의 Bucket의 폴더 구조가 복잡하게 되어 있더라도 그대로 옮겨 올 수 있다는 장점이 있다.
 
-# IAM 정책 생성 &rarr; 연결
+## 2. IAM 정책 생성 &rarr; 연결
 
 계정 B에 IAM 정책부터 생성한다. 예시로 인라인 코드를 적어보겠다.
 
@@ -60,7 +58,7 @@ use_math : true
 3. 정책 검토 &rarr; 정책 생성 순으로 클릭해 정책을 생성하자
 4. 생성한 정책을 사용자 권한에 추가하자
 
-# 계정 A의 Bucket Policy 설정
+## 3. 계정 A의 Bucket Policy 설정
 
 계정 B에 대한 세팅을 끝낸 후 계정 A의 Bucket Policy를 설정한다.
 
@@ -87,7 +85,7 @@ use_math : true
 }
 ```
 
-# AWS CLI에서 Sync
+## 4. AWS CLI에서 Sync
 
 계정 B의 IAM 키 값을 등록하여 복사할 Source-Bucket을 조회해보자.
 
@@ -101,7 +99,7 @@ aws configure --profile sync-test
 aws s3 ls s3://Bucket-Source
 ```
 
-# Migration
+## 5. Migration
 
 객체를 이전해보자
 
