@@ -116,7 +116,7 @@ public class GoogleDriveService {
 _Google Drive API 공식 문서 발췌_
 
 위의 표의 '사용' 열에 기재된 표현에 대한 자세한 민감도는 다음과 같다. 이 또한 [공식 문서](https://developers.google.com/drive/api/guides/api-specific-auth?hl=ko)에서 발췌했다.
-- **권장 / 민감하지 않음**: 이 범위는 가장 작은 승인 액세스 범위를 제공하며 기본 앱 인증만 필요하다. 이 요구사항에 관한 자세한 내용은 [인증 요구사항](https://support.google.com/cloud/answer/13464321?hl=ko을 참고하자.
+- **권장 / 민감하지 않음**: 이 범위는 가장 작은 승인 액세스 범위를 제공하며 기본 앱 인증만 필요하다. 이 요구사항에 관한 자세한 내용은 [인증 요구사항](https://support.google.com/cloud/answer/13464321?hl=ko)을 참고하자.
 - **권장 / 민감한 정보**: 이러한 범위는 사용자가 앱에 대해 승인한 특정 Google 사용자 데이터에 대한 액세스 권한을 제공한다. 추가 앱 인증을 거쳐야 합니다. 이 요구사항에 대한 자세한 내용은 [민감한 정보 및 제한된 범위 요구사항](https://support.google.com/cloud/answer/13464321?hl=ko#ss-rs-requirements)을 참고하자.
 - **제한됨**: 이러한 범위는 Google 사용자 데이터에 대한 광범위한 액세스 권한을 제공하며 제한된 범위 확인 절차를 거쳐야 한다. 이러한 요구사항에 대한 자세한 내용은 [Google API 서비스 사용자 데이터 정책](https://developers.google.com/terms/api-services-user-data-policy) 및 [특정 API 범위의 추가 요구사항](https://developers.google.com/terms/api-services-user-data-policy#additional_requirements_for_specific_api_scopes)을 참고하자. 제한된 범위의 데이터를 서버에 저장하거나 전송하는 경우 보안 평가를 거쳐야 한다.
 
@@ -144,7 +144,7 @@ public class GoogleDriveService {
         return folder.getId();
     }
     
-    public String uploadFile(java.io.File uploadFile, String seller, String buyer, String orderDate, String folderId) throws IOException {
+    public String uploadFile(java.io.File uploadFile, String seller, String buyer, String orderDate, String     folderId) throws IOException {
         folderId = makeFolder(driveService, forderName);
 
         File fileMetadata = new File();
