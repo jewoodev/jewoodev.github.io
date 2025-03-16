@@ -1,7 +1,7 @@
 ---
 title : "Google Drive를 객체 스토리지로 사용하기"
-date : 2025-03-16 00:29:00 +09:00
-categories : [Google, Drvie]
+date : 2025-03-16 09:29:00 +09:00
+categories : [Google, Google Drive]
 tags : [Google Drive]
 math : true
 ---
