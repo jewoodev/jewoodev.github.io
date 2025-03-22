@@ -92,7 +92,7 @@ annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 
 이 시도로 문제가 해결되었다.
 
-### 4. 문제 정리
+## 4. 문제 정리
 
 - GitHub 서버가 개입되면서, 혹은 MSA 아키텍처가 개입되면서 querydsl-apt의 하위 위존성이 javax로 변경되었다. 
 - Config Client로써 서버를 띄울 때는 1.2 QueryDSL Dependency의 `${~}`부분에서 컨트롤되는 의존성에 영향을 주어서 변경되었다고 의심할 수 있지만, 정확하게 파악하기는 어렵다.

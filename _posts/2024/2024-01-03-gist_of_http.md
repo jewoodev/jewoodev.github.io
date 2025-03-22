@@ -165,7 +165,7 @@ HTTP는 일반적으로 초 단위 이하의 빠른 속도로 응답하기 때�
 
 이 연결 방식은 하나의 웹 페이지 리소스를 모두 내려받기 전까지 연결을 유지한다. 그렇기 때문에 비 연결성 모델의 장점은 가져가면서 한계를 해결할 수 있다.
 
-# 참고 자료
+## 참고 자료
 
 - [네트워크 HTTP의 무상태성 비연결성, rmaomina.log](https://velog.io/@rmaomina/network-http)
 - [모든 개발자를 위한 HTTP 웹 기본 지식](https://www.inflearn.com/course/http-%EC%9B%B9-%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC/dashboard)
