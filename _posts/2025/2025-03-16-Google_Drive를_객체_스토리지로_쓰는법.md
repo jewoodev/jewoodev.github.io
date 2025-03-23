@@ -8,9 +8,12 @@ math : true
 
 이번 글에서는 Google Drive를 웹서비스의 객체 스토리지로 사용하는 방법에 대해 알아볼 것이다. 
 
-구글 드라이브 업로드 기능을 서버에 추가하기 위해서는 당연하겠지만 먼저 구글 드라이브가 필요하다. 그리고 구글 드라이브 API를 이용해서 어플리케이션이 구글 드라이브에 요청을 보낼 수 있도록 세팅을 해야 한다.
+구글 드라이브를 객체 스토리지로 사용하기 위해서는 당연하겠지만 먼저 구글 드라이브가 필요하다. 그리고 구글 드라이브 API를 이용해서 어플리케이션이 구글 드라이브에 요청을 보낼 수 있도록 세팅을 해야 한다.
 
-## 1. 구글 드라이브 API 설정
+## 1. Upload
+
+### 1.1 구글 드라이브 API 설정
+
 어플리케이션을 통해 구글 드라이브에 파일을 업로드하려면 구글 드라이브 API를 활용해야 한다. 이를 위해 다음 단계들을 수행해야 한다.
 1. Google Cloud Console에서 프로젝트 생성
 2. Google Drive API 활성화
@@ -42,7 +45,8 @@ math : true
 
 ![인증_플랫폼_구성2.png](https://github.com/jewoodev/blog_img/blob/main/%EC%A3%BC%EB%AC%B8_%EB%B2%8C%ED%81%AC_%EC%9D%B8%EC%84%9C%ED%8A%B8_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EA%B5%AC%EA%B8%80%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B8%8C_%EC%97%85%EB%A1%9C%EB%93%9C_%EA%B8%B0%EB%8A%A5/%EC%9D%B8%EC%A6%9D_%ED%94%8C%EB%9E%AB%ED%8F%BC_%EA%B5%AC%EC%84%B12.png?raw=true)
 
-이 또한 프로젝트의 한 종류라 구글 클라우드는 프로젝트라고 표현하는 것이 확인('프로젝트 구성')된다.
+그 후에 앱 정보에서 앱 이름은 헷갈리지 않게 되도록 프로젝트 이름과 동일하게 설정하고 지원 이메일에는 자신의 이메일을 입력하거나, 별도의 지원 이메일을 입력한다.  
+개발자 연락처 정보에는 개발자 이메일을 입력한다. 
 
 ![유저타입.png](https://github.com/jewoodev/blog_img/blob/main/%EC%A3%BC%EB%AC%B8_%EB%B2%8C%ED%81%AC_%EC%9D%B8%EC%84%9C%ED%8A%B8_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EA%B5%AC%EA%B8%80%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B8%8C_%EC%97%85%EB%A1%9C%EB%93%9C_%EA%B8%B0%EB%8A%A5/%EC%9C%A0%EC%A0%80%ED%83%80%EC%9E%85.png?raw=true)
 
@@ -50,8 +54,7 @@ math : true
 
 ![앱정보.png](https://github.com/jewoodev/blog_img/blob/main/%EC%A3%BC%EB%AC%B8_%EB%B2%8C%ED%81%AC_%EC%9D%B8%EC%84%9C%ED%8A%B8_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EA%B5%AC%EA%B8%80%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B8%8C_%EC%97%85%EB%A1%9C%EB%93%9C_%EA%B8%B0%EB%8A%A5/%EC%95%B1%EC%A0%95%EB%B3%B4.png?raw=true)
 
-그 후에 앱 정보에서 앱 이름은 헷갈리지 않게 되도록 프로젝트 이름과 동일하게 설정하고 지원 이메일에는 자신의 이메일을 입력하거나, 별도의 지원 이메일을 입력한다.  
-개발자 연락처 정보에는 개발자 이메일을 입력한다. 나머지는 꼭 입력해야하는 게 없다. 필요하다면 추가하도록 하자.
+앞에서 입력했듯이 동일하게 기입해준다. 나머지는 꼭 입력해야하는 게 없다. 필요하다면 추가하도록 하자.
 
 ![oauth_클라이언트_id_만들기2.png](https://github.com/jewoodev/blog_img/blob/main/%EC%A3%BC%EB%AC%B8_%EB%B2%8C%ED%81%AC_%EC%9D%B8%EC%84%9C%ED%8A%B8_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%EA%B5%AC%EA%B8%80%EB%93%9C%EB%9D%BC%EC%9D%B4%EB%B8%8C_%EC%97%85%EB%A1%9C%EB%93%9C_%EA%B8%B0%EB%8A%A5/oauth_%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8_id_%EB%A7%8C%EB%93%A4%EA%B8%B02.png?raw=true)
 그 다음 'OAuth 클라이언트 ID를 만들기' 로 돌아와서 진행한다. 우리는 스프링 서버가 사용할 클라이언트 ID를 만들 것이기 때문에 웹 애플리케이션을 골라준다.
@@ -70,7 +73,11 @@ math : true
 
 사용 버튼을 누르면 된다.
 
-## 2. 스프링 코드 작성
+### 1.2 서버 코드 작성
+
+구글 드라이브 설정이 끝났으므로, 이제 클라이언트 &rarr; 서버 &rarr; 구글 드라이브 로 객체가 업로드 될 수 있게 개발해야 한다.
+
+이 예시에서는 서버가 스프링 서버라는 것을 전제로 한다.  
 의존성 부터 추가하자.
 
 ```groovy
@@ -144,7 +151,7 @@ public class GoogleDriveService {
         return folder.getId();
     }
     
-    public String uploadFile(java.io.File uploadFile, String seller, String buyer, String orderDate, String     folderId) throws IOException {
+    public String uploadFile(java.io.File uploadFile, String seller, String buyer, String orderDate, String folderId) throws IOException {
         folderId = makeFolder(driveService, forderName);
 
         File fileMetadata = new File();
@@ -159,3 +166,9 @@ public class GoogleDriveService {
     }
 }
 ```
+
+## 2. Download
+
+다운로드 기능은 구글 드라이브의 객체들이 가지고 있는 고유한 ID값을 이용해 구현할 수 있다. 서버에서 객체 스토리지를 사용하는 시나리오에서는 사용자가 업로드한 객체들만 다운로드하는 논리로 사용되는 경우가 많기 때문에, 1.2 절의 예시 코드에서 처럼 업로드 시 ID값을 얻어두었다가, 이를 이용하여 해당 객체를 식별하게 끔 개발하면 된다.
+
+예시 코드는 다음 주에 추가하겠다.
