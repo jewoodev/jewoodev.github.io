@@ -18,3 +18,5 @@ sudo -b unshare --pid --fork --mount-proc /lib/systemd/systemd --system-unit=bas
 ```bash
 sudo -E nsenter --all -t $(pgrep -xo systemd) runuser -P -l $USER -c "exec $SHELL"
 ```
+
+ubuntu 의 최초 프로세스인 systemctl 은 windows 의 하위 시스템으로 실행되는 기본적으로 운영체제에서 정상작동되지 될 수 없기 때문에 생기는 문제입니다.
