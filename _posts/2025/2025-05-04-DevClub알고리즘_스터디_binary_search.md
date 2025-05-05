@@ -1,6 +1,6 @@
 ---
 title : "Dev Club 알고리즘 스터디, 이진 탐색"
-date : 2025-05-04 15:39:00 +09:00
+date : 2025-05-04 15:39:03 +09:00
 categories : [Algorithm, Binary search]
 tags : [Binary search]
 math : true
