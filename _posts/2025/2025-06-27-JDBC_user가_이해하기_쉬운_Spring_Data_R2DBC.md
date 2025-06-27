@@ -1,6 +1,6 @@
 ---
 title : "JDBC user가 이해하기 쉬운 Spring Data R2DBC"
-date : 2025-06-28 22:13:00 +09:00
+date : 2025-06-27 22:13:00 +09:00
 categories : [R2DBC, Spring Data]
 tags : []
 math : true
