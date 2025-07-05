@@ -64,7 +64,8 @@ public Flux<User> getUsers() {
 }
 ```
 
-R2DBC의 메소드의 시그니처에서 리턴타입이 `Flux<User>` 인데 Reactor Project의 Publisher 라는 개념에 속하는 것이다. 이에 대해 무지하다면, `Mono`는 데이터를 0개 혹은 하나 뱉어내는 물줄기, `Flux`는 데이터를 0개부터 여러 개까지 뱉어내는 물줄기라는 개념으로 이해하자.
+R2DBC의 메소드의 시그니처를 보면 리턴 타입이 `Flux<User>` 라는 생소한 타입이 명시되어 있다.  
+이 타입은 Reactor Project의 Publisher라는 개념이다. 이게 뭔지 잘 몰라도 R2DBC를 이해하는데 큰 문제는 없다. `Mono`는 데이터를 0개 혹은 하나 뱉어내는 물줄기, `Flux`는 데이터를 0개부터 여러 개까지 뱉어내는 물줄기라는 개념으로 이해하자.
 
 ### 2. API 레벨에서의 차이
 데이터베이스와의 상호작용 방식에서도 큰 차이가 있다.   
@@ -172,7 +173,7 @@ public Flux<User> getLargeDatasetWithBackpressure() {
 
 ### 5. 동시 요청 처리 방식
 동시 요청 처리 능력에서 R2DBC의 진가가 발휘된다.   
-JDBC 방식에서는 각 요청마다 별도의 스레드가 필요하여 많은 동시 요청이 있을 때 스레드 풀이 고갈될 수 있다. R2DBC는 이벤트 루프 기반으로 동작하여 소수의 스레드로도 수천 개의 동시 요청을 효율적으로 처리할 수 있다.
+JDBC 방식에서는 각 요청마다 **별도의 스레드가 필요**하여 많은 동시 요청이 있을 때 스레드 풀이 고갈될 수 있다. R2DBC는 **이벤트 루프 기반**으로 동작하여 소수의 스레드로도 수천 개의 동시 요청을 효율적으로 처리할 수 있다.
 
 ```java
 // JDBC 방식 - 각 요청마다 스레드 필요
@@ -196,7 +197,7 @@ public class R2dbcController {
 
 ### 6. 트랜잭션
 R2DBC는 구조적으로 동기 방식의 data access API 와는 다른 트랜잭션 구현이 필요하다.   
-왜냐하면, R2DBC는 **이벤트 루프 방식으로 동작**하기 때문에 일련의 로직이 **같은 스레드에서 동작하는 것을 보장할 수 없**기 때문이다. 그런데 R2DBC 공식 문서에서는 `@Transactional` 로 트랜잭션 적용이 가능하다고 되어있다. 어떻게 이게 가능한걸까?
+왜냐하면, R2DBC는 **이벤트 루프 방식으로 동작**하기 때문에 일련의 로직이 **같은 스레드에서 동작하는 것을 보장할 수 없**기 때문이다. 그럼 R2DBC는 어떻게 트랜잭션을 보장할 수 있을까?
 
 Spring boot를 사용하면 `R2dbcTransactionManagerAutoConfiguration`에 의해서 `R2dbcTransactionManager`가 빈으로 자동 등록된다.
 ```java
@@ -221,7 +222,7 @@ public class R2dbcTransactionManager extends AbstractReactiveTransactionManager 
 }
 ```
 
-그리고 이 구현체는 다음과 같은 hierarchy 를 갖고 있다.
+`R2dbcTransactionManager` class는 아래와 같은 상속 관계를 갖고 있다.
 
 ```java
 public interface TransactionManage {}
@@ -233,7 +234,8 @@ public class AbstractReactiveTransactionManager implements ReactiveTransactionMa
 public class R2dbcTransactionManager implements AbstractReactiveTransactionManager ... {}
 ```
 
-이 hierarchy를 구성하는 것 중 "어떻게 트랜잭션을 유지할까?" 에 대한 정보를 얻기 위해서는 `AbstractReactiveTransactionManager`와 `R2dbcTransactionManager`를 봐야한다. 트랜잭션이 시작될 때 호출되는 메소드는 `getReactiveTransaction(...)` 이다. 
+이 관계 구조에서 "어떻게 트랜잭션을 유지할까?" 에 대한 정보를 얻을 수 있는 곳은 `AbstractReactiveTransactionManager`이다.   
+트랜잭션이 시작될 때 `AbstractReactiveTransactionManager.getReactiveTransaction(...)` 메소드가 호출된다. 
 
 ```java 
 @Override
@@ -310,19 +312,19 @@ public static Mono<TransactionContext> currentContext() {
 }
 ```
 
-`TransactionContextManager.currentContext()` 메소드를 보니, `Mono.deferContextual(...)` 메소드를 통해 cold start 방식으로 현재 context를 가져오고 `TransactionContext`를 함께 생성해주는걸 알 수 있다.
+`TransactionContextManager.currentContext()` 메소드를 보면, `Mono.deferContextual(...)` 메소드를 통해 cold start 방식으로 현재 context를 가져오고 `TransactionContext`를 함께 생성해주는걸 알 수 있다.
 
-이때, `// 1번`에 의해서 `TransactionContext가` Reactor Context에 포함되어있는지 확인하고, 없다면 `TransactionContextHolder`가 있는지 확인한다. 만약, 둘 다 없다면 `NoTransactionInContextExcepion`을 던진다.
+이때, `// 1번` 라인의 코드에서 `TransactionContext`가 Reactor Context에 포함되어있는지 확인하고, 없다면 `TransactionContextHolder`가 있는지 확인한다. 만약, 둘 다 없다면 `NoTransactionInContextExcepion`을 던진다.
 
-여기까지 봤을때, Spring Data R2DBC는 여러 스레드에 걸쳐 커넥션을 유지하기위해 Project Reactor의 context를 사용한다고 유추할 수 있다.
+여기까지 봤을때, R2DBC가 트랜잭션을 thread-safe 하게 유지하기 위해 Project Reactor의 Context를 사용한다고 유추할 수 있다.
 
-하지만, 지금까지는 재사용 하거나 이미 있는 트랜잭션을 받아오는 과정이었다. 그럼 실제로 새로운 트랜잭션이 생성되는쪽은 어떻게 구현되어 있을까?
+하지만, 지금까지는 재사용 하거나 이미 있는 트랜잭션을 받아오는 과정이었다. 그럼 실제로 새로운 트랜잭션을 생성되는 과정은 어떻게 구현되어 있을까?
 
 그 답은 Aspect 진입시점인 `TransactionAspectSupport.ReactiveTransactionSupport` class 에서 찾을 수 있었다.
 
 ```java
-public Object invokeWithinTransaction(Method method, @Nullable Class<?> targetClass,
-				InvocationCallback invocation, @Nullable TransactionAttribute txAttr, ReactiveTransactionManager rtm) {
+public Object invokeWithinTransaction(Method method, @Nullable Class<?> targetClass, 
+          InvocationCallback invocation, @Nullable TransactionAttribute txAttr, ReactiveTransactionManager rtm) {
 
     String joinpointIdentification = methodIdentification(method, targetClass, txAttr);
 
@@ -331,29 +333,30 @@ public Object invokeWithinTransaction(Method method, @Nullable Class<?> targetCl
             !COROUTINES_FLOW_CLASS_NAME.equals(new MethodParameter(method, -1).getParameterType().getName()))) {
 
         return TransactionContextManager.currentContext().flatMap(context ->
-                    Mono.<Object, ReactiveTransactionInfo>usingWhen(
-                        createTransactionIfNecessary(rtm, txAttr, joinpointIdentification),
-                        tx -> {
-                            try {
-                                return (Mono<?>) invocation.proceedWithInvocation();
-                            }
-                            catch (Throwable ex) {
-                                return Mono.error(ex);
-                            }
-                        },
-                        this::commitTransactionAfterReturning,
-                        this::completeTransactionAfterThrowing,
-                        this::rollbackTransactionOnCancel)
-                    .onErrorMap(this::unwrapIfResourceCleanupFailure))
+                        Mono.<Object, ReactiveTransactionInfo>usingWhen(
+                                        createTransactionIfNecessary(rtm, txAttr, joinpointIdentification),
+                                        tx -> {
+                                            try {
+                                                return (Mono<?>) invocation.proceedWithInvocation();
+                                            } catch (Throwable ex) {
+                                                return Mono.error(ex);
+                                            }
+                                        },
+                                        this::commitTransactionAfterReturning,
+                                        this::completeTransactionAfterThrowing,
+                                        this::rollbackTransactionOnCancel)
+                                .onErrorMap(this::unwrapIfResourceCleanupFailure))
                 .contextWrite(TransactionContextManager.getOrCreateContext())
                 .contextWrite(TransactionContextManager.getOrCreateContextHolder());
     }
+}
 ```
 
-위 코드는 `Mono`를 반환하는 로직이다. 실제 코드를 열어보면 바로 아랫블록에 `Flux`에 대한 구현도 있다.
+위 코드는 `Mono`를 반환하는 로직이다. 
 
-다시 코드로 돌아와서, 코드를 천천히 살펴보면, Transaction이 없다면 생성하고, `.contextWrite`를 통해서 `reactorContext`에 커넥션을 등록하는걸 확인할 수 있다.
+트랜잭션이 없다면 생성하고, `.contextWrite`를 통해서 Reactor Context에 커넥션을 등록하는걸 확인할 수 있다.
 
+> 실제 코드를 확인해보면 위의 코드 바로 아래에 `Flux`에 대한 구현을 확인할 수 있다.
 
 ## R2DBC API 살펴보기
 지금까지 동기 방식의 JDBC 와 다르게 R2DBC 가 갖는 차이점이 무엇인지 살펴보았다. 이제는 어떻게 R2DBC를 사용할 수 있는지 'API 사용 예시 코드'를 살펴보자. R2DBC는 Spring Data Project에 속하는 만큼 익숙한 API 스펙을 제공한다. 
@@ -396,7 +399,7 @@ public interface StudyParticipantsRepository extends ReactiveCrudRepository<Stud
 }
 ```
 
-위의 예시에서 JDBC 기반의 Repository와는 다른 인터페이스를 상속하는 것을 볼 수 있다. R2DBC의 Repository API는 보통 리액티브 방식으로 동작하는 `ReactiveCrudRepository`를 상속한다.  
+위의 코드에서 JDBC 기반의 Repository와는 다른 인터페이스를 상속하는 것을 볼 수 있다. R2DBC의 Repository API는 보통 리액티브 방식으로 동작하는 `ReactiveCrudRepository`를 상속한다.  
 그리고 리턴 타입이 `Mono` 또는 `Flux` 인 점도 다르다. 
 
 ### 3. 서비스 클래스 구현
@@ -443,9 +446,9 @@ public class StudyParticipantService {
     - 참여자 이름이 일치하는 레코드를 읽어 `Mono<'검색된 엔티티 객체'>` 객체로 return 한다.
 
 ### 4. `R2dbcEntityTemplate`을 이용한 데이터 액세스
-R2DBC는 `JdbcTemplate`처럼 템플릿/콜백 패턴이 적용된 `R2dbcEntityTemplate`을 제공한다. `R2dbcEntityTemplate`는 Spring Data R2DBC의 핵심 진입점으로써 JDBC 기반 프로젝트의 `JDBCTemplate` 처럼 R2DBC에서 핵심 진입점의 역할을 한다. 해당 API의 **entry points(진입점)**(`insert()`, `select()`, `update()`) 을 가지고 있어 실행할 작업에 따른 자연스러운 명명 스키마를 따른다. 그리고 API는 SQL 문을 생성하고 실행하는 종료 메서드로 이어지는 context-dependent methods 만 제공하도록 설계되었다. 
+R2DBC는 `JdbcTemplate`처럼 템플릿/콜백 패턴이 적용된 `R2dbcEntityTemplate`을 제공한다. `R2dbcEntityTemplate`는 Spring Data R2DBC의 central entrypoint(`insert()`, `select()`, `update()`) 이다. 이 entrypoint로 R2DBC는 데이터 쿼리, 삽입, 업데이트, 삭제와 같은 일반적인 사용 사례에 대해 엔티티 중심의 직접적인 메서드와 더욱 간결하고 유연한 인터페이스를 제공한다.
 
-> 모든 terminal methods(`all()`, `first()`, `then()`)는 항상 원하는 작업을 나타내는 Publisher 유형을 반환한다. 실제 명령문은 구독 시 데이터베이스로 전송된다.
+`R2dbcEntityTemplate` entrypoint로 시작되는 스트림의 모든 terminal(끝에 위치하는) method는 그 다음의 작업을 처리하기에 적합한 Publisher를 return 한다. Terminal method 중 하나인 `all()` method는 하나의 sequence가 아닌 여러 개의 sequence를 emit하는 `Flux`(`Publisher`)를 return 한다.
 
 ```java
 @Slf4j
@@ -498,7 +501,7 @@ R2DBC가 이벤트 루프 구조를 갖는 것이나 Reactive Streams 사양으�
 3. I/O bound 작업에 최적화되어 있어 CPU bound 작업이 많다면 **오히려 성능이 떨어질 수 있다**.
 4. 일부 APM(Application Performance Monitoring) 툴은 WebFlux와 호환되지 않을 수 있다.
 
-그럼에도 공부해보면 좋은 프로젝트라고 생각한다. 그리고 개발해보다 보면 I/O bound 작업이 큰 비중을 차지하는 애플리케이션이 적잖게 있다는 것을 알 수 있어 매력적인 선택지이기도 하다. 그렇다고 필요하지 않은데 공부하는 것을 권하고 싶진 않다. 많은 학습 비용이 생길 것은 분명하기 때문에 잘 판단해서 써보는걸 권장한다.   
+그럼에도 공부해보면 좋은 프로젝트라고 생각한다. 그리고 개발해보다 보면 I/O bound 작업이 큰 비중을 차지하는 애플리케이션이 적잖게 있다는 것을 알 수 있어 매력적인 선택지이기도 하다. 그렇다고 필요하지 않은데 공부하는 것을 권하고 싶진 않다. 많은 학습 비용이 들기 때문에 잘 판단해서 써보는걸 권장한다.   
 현재 프로젝트가 WebFlux를 쓰는게 훨씬 좋을게 분명한게 아니라면, 그리고 WebMVC로도 충분히 버터낼 것 같다면 굳이 선택하지 않는 게 더 좋은 선택이라 생각한다.
 
 ## Reference
