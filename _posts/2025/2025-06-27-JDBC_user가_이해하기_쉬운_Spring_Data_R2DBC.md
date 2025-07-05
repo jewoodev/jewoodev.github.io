@@ -101,7 +101,7 @@ Mono<Connection> connectionMono = connectionFactory.create();
 
 ### 4. 결과 처리 방식
 JDBC는 **기본적**으로 **전체 결과셋을 메모리에 로드**하는 방식이다.   
-추가적으로 `fetch size`를 설정하거나 '스트리밍 `ResultSet`'(특정 벤더의 지원이 필요)을 사용해서 결과 처리 방식에 변화를 줄 순 있지만,   
+추가적으로 `fetch size`를 설정하거나 `Streaming ResultSet`(특정 벤더의 지원이 필요)을 사용해서 결과 처리 방식에 변화를 줄 순 있지만,   
 전자는 여전히 `OutOfMemoryError`가 발생할 위험이 있고 후자는 동기적 처리로 인한 **스레드 블로킹** 문제가 남아있다.   
 그리고 그런 방법으로 메모리 사용량을 조절하더라도 결국 그런 설정이 각 스레드마다 적용되므로, '동시 실행 스레드' 갯수에 따라 메모리 사용량은 선형적으로 증가하게 된다.
 
@@ -132,7 +132,7 @@ public List<User> getLargeDatasetImproved() {
     return users; // 최종적으로는 모든 데이터가 메모리에 존재
 }
 
-// JDBC - 스트리밍 ResultSet (MySQL 예시)
+// JDBC - Streaming ResultSet (MySQL 예시)
 public void processLargeDatasetStreaming() {
     String sql = "SELECT * FROM users";
 
