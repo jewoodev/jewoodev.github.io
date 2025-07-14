@@ -318,7 +318,7 @@ public static Mono<TransactionContext> currentContext() {
 
 이때, `// 1번` 라인의 코드에서 `TransactionContext`가 Reactor Context에 포함되어있는지 확인하고, 없다면 `TransactionContextHolder`가 있는지 확인한다. 만약, 둘 다 없다면 `NoTransactionInContextExcepion`을 던진다.
 
-여기까지 봤을때, R2DBC가 트랜잭션을 thread-safe 하게 유지하기 위해 Project Reactor의 Context를 사용한다고 유추할 수 있다.
+여기까지 봤을때, R2DBC가 여러 스레드를 거치더라도 트랜잭션을 유지하기 위해 Project Reactor의 Context를 사용한다고 유추할 수 있다.
 
 하지만, 지금까지는 재사용 하거나 이미 있는 트랜잭션을 받아오는 과정이었다. 그럼 실제로 새로운 트랜잭션을 생성되는 과정은 어떻게 구현되어 있을까?
 
@@ -436,7 +436,7 @@ public class StudyParticipantService {
     - 저장 요청된 `StudyParticipant` 엔티티 객체를 저장하기 전에 해당 객체의 `spName` 값이 이미 저장된 적이 있는지 확인하고 없다면 저장한다. 있다면 중복된 `spName`로 요청되었음을 명시하는 에러를 발생시킨다.
         - `repository.existsBySpName(String spName)` 메서드는 인자 `spName`과 같은 값의 spName을 갖는 레코드가 있는지 여부를 return 한다.
         - `flatMap`
-            - input sequence를 받아 새로운 inner sequence를 반환하는 오퍼레이터이다.
+            - 이 체이닝 메서드는 input sequence를 받아 새로운 inner sequence를 반환하는 오퍼레이터이다. Upstream에서 emit되는 Boolean 값으로 일정한 로직을 수행한 후의 결과로 `Mono` Publisher를 리턴하는 걸 약속한다고 이해하면 된다.
             - `repository.existsBySpName(...)` 을 통해 같은 이름으로 등록된 참여자가 '존재하는지'를 확인하고,
                 - 존재한다면
                     - `Mono.error(java.lang.Throwable error)` 를 리턴한다.
