@@ -1,7 +1,7 @@
 ---
 title : "MongoDB 성능이 RDBMS 보다 뛰어난 이유"
 date : 2025-07-19 16:40:00 +09:00
-categories : [MongoDB, Database]
+categories : [Database, MongoDB]
 tags : []
 math : true
 image:
