@@ -132,7 +132,7 @@ db.policies.findOne({ _id: ObjectId("507f1f77bcf86cd799439011") })
 - 단일 네트워크 I/O
 
 ## 데이터 지역성(Data Locality)이 만드는 성능 차이
-![mongodb_locality_compare_with_rdbms.png](https://github.com/jewoodev/blog_img/blob/main/2025-07-18-MongoDB_%EC%84%B1%EB%8A%A5%EC%9D%B4_RDBMS_%EB%B3%B4%EB%8B%A4_%EB%9B%B0%EC%96%B4%EB%82%9C_%EC%9D%B4%EC%9C%A0/MongoDB%EA%B3%BC_RDBMS%EC%9D%98_%EC%A7%80%EC%97%AD%EC%84%B1_%EB%B9%84%EA%B5%90.png?raw=true)
+![mongodb_locality_compare_with_rdbms.png](https://github.com/jewoodev/blog_img/blob/main/2025-07-18-MongoDB%EC%9D%98_%EC%84%B1%EB%8A%A5%EC%9D%B4_RDBMS%EB%B3%B4%EB%8B%A4_%EB%9B%B0%EC%96%B4%EB%82%9C_%EC%9D%B4%EC%9C%A0/MongoDB%EA%B3%BC_RDBMS%EC%9D%98_%EC%A7%80%EC%97%AD%EC%84%B1_%EB%B9%84%EA%B5%90.png?raw=true)
 _출처:[MongoDB's Performance over RDBMS](https://www.mongodb.com/developer/products/mongodb/mongodb-performance-over-rdbms/)_
 
 그러한 데이터 모델링 방식의 차이는 **데이터 지역성**이 달라지는 결과로도 이어진다.  
@@ -226,7 +226,7 @@ WiredTiger 스토리지 엔진에서 Lock-Free를 구현하기 위한 또 다른
 스킵 리스트 자료 구조를 이해하기 위해 링크드 리스트와 비교해보려 한다.  
 링크드 리스트는 조회 구조가 단방향이며, 8번째 노드를 검색하려면 8번의 노드 검색이 필요하다. 스킵 리스트는 중간 노드를 갖는 여러 개의 리스트 층을 형성해 필요한 노드 검색 횟수를 줄인다. 이런 스킵 리스트의 평균 검색 기능은 B-Tree와 같은 O(log(n)) 이다.  
 
-![링크드_리스트와_스킵_리스트의_작동_방식_비교.png](https://github.com/jewoodev/blog_img/blob/main/2025-07-18-MongoDB_%EC%84%B1%EB%8A%A5%EC%9D%B4_RDBMS_%EB%B3%B4%EB%8B%A4_%EB%9B%B0%EC%96%B4%EB%82%9C_%EC%9D%B4%EC%9C%A0/%EB%A7%81%ED%81%AC%EB%93%9C_%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%99%80_%EC%8A%A4%ED%82%B5_%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%9D%98_%EC%9E%91%EB%8F%99_%EB%B0%A9%EC%8B%9D_%EB%B9%84%EA%B5%90.png?raw=true)
+![링크드_리스트와_스킵_리스트의_작동_방식_비교.png](https://github.com/jewoodev/blog_img/blob/main/2025-07-18-MongoDB%EC%9D%98_%EC%84%B1%EB%8A%A5%EC%9D%B4_RDBMS%EB%B3%B4%EB%8B%A4_%EB%9B%B0%EC%96%B4%EB%82%9C_%EC%9D%B4%EC%9C%A0/%EB%A7%81%ED%81%AC%EB%93%9C_%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%99%80_%EC%8A%A4%ED%82%B5_%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%9D%98_%EC%9E%91%EB%8F%99_%EB%B0%A9%EC%8B%9D_%EB%B9%84%EA%B5%90.png?raw=true)
 _링크드 리스트와 스킵 리스트의 조회 과정 비교_
 
 스킵 리스트는 B-Tree에 비해 검색 기능이 조금 떨어지긴 하지만, 구현이 간단하고 메모리 공간을 많이 필요로 하지 않는다. 그뿐만 아니라 WiredTiger 스토리지 엔진에 사용된 스킵 리스트는 새로운 노드를 추가하기 위해 잠금을 필요로 하지 않으며, 검색에도 필요하지 않다. 노드 삭제는 잠금을 필요로 하지만, B-Tree 자료 구조보다는 잠금을 덜 필요로 하므로 그다지 큰 성능 저하 이슈는 아니다.
