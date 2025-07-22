@@ -24,6 +24,8 @@ R2DBC가 탄생하기 전엔 몇몇 NoSQL 벤더만 비동기 방식의 API를 �
 
 - [H2](https://github.com/r2dbc/r2dbc-h2), [MariaDB](https://github.com/mariadb-corporation/mariadb-connector-r2dbc),[Microsoft SQL Server](https://github.com/r2dbc/r2dbc-mssql), [MySQL](https://github.com/asyncer-io/r2dbc-mysql), [jasync-sql MySQL](https://github.com/jasync-sql/jasync-sql), [Postgres](https://github.com/pgjdbc/r2dbc-postgresql), [Oracle](https://github.com/oracle/oracle-r2dbc)
 
+---
+
 ## R2DBC와 JDBC와의 차이
 ### 1. 아키텍처 차이
 JDBC와 R2DBC의 가장 근본적인 차이는 **블로킹**과 **논블로킹** 방식의 차이에 있다.   
@@ -360,6 +362,8 @@ public Object invokeWithinTransaction(Method method, @Nullable Class<?> targetCl
 
 > 실제 코드를 확인해보면 위의 코드 바로 아래에 `Flux`에 대한 구현을 확인할 수 있다.
 
+---
+
 ## R2DBC API 살펴보기
 지금까지 동기 방식의 JDBC 와 다르게 R2DBC 가 갖는 차이점이 무엇인지 살펴보았다. 이제는 어떻게 R2DBC를 사용할 수 있는지 'API 사용 예시 코드'를 살펴보자. R2DBC는 Spring Data Project에 속하는 만큼 익숙한 API 스펙을 제공한다. 
 
@@ -494,6 +498,8 @@ public class StudyParticipantService {
 - `template.selectOne(Query query)`
     - 이 메서드는 한 건의 데이터를 조회하는 데에 사용되며, 인자로 `Query` 를 받는다.
 
+---
+
 ## 정리
 R2DBC가 이벤트 루프 구조를 갖는 것이나 Reactive Streams 사양으로 구축되었다는 것에는 비동기 애플리케이션에 관련된 Spring의 생태계가 있다. 더 세부적으로 그러한 것들을 이해하기 위해서는 Project Reactor와 Spring Webflux에 대해 더 공부하면 좋다.
 
@@ -505,6 +511,8 @@ R2DBC가 이벤트 루프 구조를 갖는 것이나 Reactive Streams 사양으�
 
 그럼에도 공부해보면 좋은 프로젝트라고 생각한다. 그리고 개발해보다 보면 I/O bound 작업이 큰 비중을 차지하는 애플리케이션이 적잖게 있다는 것을 알 수 있어 매력적인 선택지이기도 하다. 그렇다고 필요하지 않은데 공부하는 것을 권하고 싶진 않다. 많은 학습 비용이 들기 때문에 잘 판단해서 써보는걸 권장한다.   
 현재 프로젝트가 WebFlux를 쓰는게 훨씬 좋을게 분명한게 아니라면, 그리고 WebMVC로도 충분히 버터낼 것 같다면 굳이 선택하지 않는 게 더 좋은 선택이라 생각한다.
+
+---
 
 ## Reference
 - [Reactive Transactions with Spring](https://spring.io/blog/2019/05/16/reactive-transactions-with-spring)
