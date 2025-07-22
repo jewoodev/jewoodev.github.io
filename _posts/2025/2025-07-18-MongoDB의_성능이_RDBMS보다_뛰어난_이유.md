@@ -23,7 +23,7 @@ MongoDB는 document-oriented data model을 사용한다.
 ### '보험 정책 시스템' 예시로 보는 모델링 차이
 보험 정책(Policy)을 중심으로 고객(Customer)과 보장내용(Coverage)이 연결된 시스템을 예시로 두 데이터베이스의 모델링 방식을 비교해보자.
 
-MySQL에서는 정규화 원칙에 따라 각 엔터티를 별도 테이블로 분리한다:
+MySQL에서는 정규화 원칙에 따라 각 엔터티를 별도 테이블로 분리한다.
 
 ```sql
 -- 고객 테이블
@@ -57,7 +57,7 @@ CREATE TABLE coverages (
     FOREIGN KEY (policy_id) REFERENCES policies(policy_id)
 );
 ```
-이 구조에서 하나의 정책과 관련된 모든 정보를 조회하려면 복잡한 JOIN이 필요하다:
+이 구조에서 하나의 정책과 관련된 모든 정보를 조회하려면 복잡한 JOIN이 필요하다.
 ```sql
 SELECT 
     p.policy_number,
@@ -73,7 +73,7 @@ WHERE p.policy_id = 12345
 GROUP BY p.policy_id;
 ```
 <br>
-MongoDB에서는 관련된 데이터를 하나의 문서에 임베드하여 저장한다:
+MongoDB에서는 관련된 데이터를 하나의 문서에 임베드하여 저장한다.
 
 ```javascript
 // policies 컬렉션의 단일 문서
@@ -113,7 +113,7 @@ MongoDB에서는 관련된 데이터를 하나의 문서에 임베드하여 저�
   ]
 }
 ```
-같은 정보를 조회할 때는 단순한 쿼리만 필요하다:
+같은 정보를 조회할 때는 단순한 쿼리만 필요하다.
 ```javascript
 db.policies.findOne({ _id: ObjectId("507f1f77bcf86cd799439011") })
 ```
@@ -143,13 +143,11 @@ _출처:[MongoDB's Performance over RDBMS](https://www.mongodb.com/developer/pro
 
 ### RDBMS의 물리적 분산 저장 문제
 MySQL에서는 정규화로 인해 **논리적으로 연관된 데이터가 물리적으로는 연속되지 않은 디스크 위치에 저장**된다.
-
 ```
 디스크 주소 1000-2000: Policies 테이블 데이터
 디스크 주소 5000-6000: Coverage 테이블 데이터  
 디스크 주소 8000-9000: Customer 테이블 데이터
 ```
-
 물리적 분산 저장이 위의 예시대로 이루어진다면 하나의 Policy 정보를 조회할 때
 1. 디스크 헤드가 주소 1000번대로 이동 → Policy 데이터 읽기
 2. 디스크 헤드가 주소 8000번대로 이동 → Customer 데이터 읽기
@@ -157,23 +155,21 @@ MySQL에서는 정규화로 인해 **논리적으로 연관된 데이터가 물�
 
 의 과정을 거칠 것이다. 
 
-그리고 이런 **물리적으로 분산된 위치 접근**이 랜덤 I/O를 유발한다. 랜덤 I/O가 유발되면 다음과 같은 결과로 이어진다.
+그리고 이런 **물리적으로 분산된 위치 접근**이 랜덤 I/O를 유발한다. 즉, 성능이 저하된다.
 - 디스크 헤드의 잦은 이동 (Seek Time 증가)
 - 디스크 회전 대기 시간 (Rotational Latency) 누적
 - HDD 기준 랜덤 I/O는 순차 I/O보다 100-1000배 느림
 
 ### MongoDB의 물리적 연속 저장
 반면 MongoDB는 관련된 모든 데이터를 **물리적으로 연속된 디스크 공간**에 저장한다.
-
 ```
 디스크 주소 1000-1500: Policy + Customer + Coverage 모든 데이터
 ```
-
 따라서 하나의 Policy 정보를 조회할 때는 **단일 위치에서 순차적으로** 모든 데이터를 읽는다.
 1. 디스크 헤드가 주소 1000번대로 한 번만 이동
 2. 연속된 공간에서 모든 관련 데이터를 순차적으로 읽기
 
-그리고 이런 순차 I/O가 이루어지면 다음과 같은 결과로 이어진다.
+즉, 성능이 향상된다.
 - 디스크 헤드 이동 최소화 (Seek Time 거의 없음)
 - 연속된 데이터 블록을 한 번에 읽기 가능
 - HDD/SSD 모두에서 최적의 성능 발휘
@@ -197,6 +193,8 @@ MySQL에서는 정규화로 인해 **논리적으로 연관된 데이터가 물�
 **MySQL**: 각 쿼리마다 여러 테이블을 조인해야 하므로, 데이터가 늘어날수록 성능이 급격히 저하된다. 특히 분산 환경에서는 테이블들이 서로 다른 서버에 위치할 경우 네트워크 오버헤드가 기하급수적으로 증가한다.
 
 **MongoDB**: 문서 하나만 읽으면 되므로 데이터양이 증가해도 성능 저하가 선형적이다. 또한 샤딩(분산)시에도 관련 데이터가 함께 이동하므로 분산 환경에서의 성능 저하가 최소화된다.
+
+---
 
 ## 스토리지 엔진: WiredTiger가 갖는 다른 작동 방식
 데이터 모델링 방식의 차이와 함께 MongoDB의 성능 우위를 가져오는 또 다른 핵심 요소는 바로 **WiredTiger 스토리지 엔진**이다.  
@@ -271,7 +269,7 @@ MongoDB의 성능 우위를 완성하는 세 번째 요소는 고급 인덱싱 �
 ### 다중키 인덱스: 배열 데이터의 혁신적 처리
 보험 정책의 보장내용(coverages) 배열을 검색하는 상황을 보자.
 
-**MySQL에서 특정 보장내용 검색:**
+**MySQL에서 특정 보장내용을 검색**하는 경우엔 다음과 같이 쿼리를 해야 한다.
 ```sql
 -- "생명보험"이 포함된 정책 찾기
 SELECT p.policy_number, p.premium 
@@ -279,16 +277,12 @@ FROM policies p
 JOIN coverages c ON p.policy_id = c.policy_id
 WHERE c.coverage_type = '생명보험';
 ```
-이 경우 coverages 테이블 전체를 스캔하거나, coverage_type에 인덱스가 있어도 JOIN 연산이 필요하다.
-
-<br>
-
-**MongoDB에서 배열 내 요소 검색:**
+이 경우 coverages 테이블 전체를 스캔하거나, coverage_type에 인덱스가 있어도 JOIN 연산이 필요하다. 이에 반해**MongoDB에서 배열 내 요소 검색**을 하는 경우엔 부가적인 작업 없이 조회를 수행하게 된다. 
 ```javascript
 // "생명보험"이 포함된 정책 찾기
 db.policies.find({"coverages.coverage_type": "생명보험"})
 ```
-MongoDB는 배열의 각 요소에 대해 **자동으로 별도의 인덱스 엔트리를 생성**한다.
+MongoDB는 배열의 각 요소에 대해 **자동으로 별도의 인덱스 엔트리를 생성**한다. 예를 들어, coverage_type에 인덱스를 생성하면 다음과 같이 인덱스 엔트리가 생성된다.
 ```javascript
 // coverages.coverage_type 인덱스 생성
 db.policies.createIndex({"coverages.coverage_type": 1})
@@ -298,29 +292,29 @@ db.policies.createIndex({"coverages.coverage_type": 1})
 // "상해보험" -> ObjectId("507f1f77bcf86cd799439011") 
 // "질병보험" -> ObjectId("507f1f77bcf86cd799439011")
 ```
-**성능 차이점**
+이 차이점은 다음과 같은 **성능 차이**를 가져온다.
 - **MySQL**: JOIN으로 인한 CPU 오버헤드 + 두 테이블의 인덱스 스캔
 - **MongoDB**: 단일 인덱스 스캔으로 즉시 문서 식별
 
 ### 임베디드 문서 인덱싱: 중첩 구조의 직접 최적화
-고객명으로 정책을 검색하는 경우를 살펴보자. 
+고객명으로 정책을 검색하는 경우를 살펴보자.
 
-**MySQL:**
+MySQL의 경우엔
 ```sql
 SELECT p.policy_number 
 FROM policies p 
 JOIN customers c ON p.customer_id = c.customer_id 
 WHERE c.name = '김철수';
 ```
-<br>
+이렇게 'policies' 테이블과 'customers' 테이블을 JOIN 해야 한다.
 
-**MongoDB:**
+그리고 MongoDB의 경우엔
 ```javascript
 // 중첩 필드 직접 인덱싱
 db.policies.createIndex({"customer.name": 1})
 db.policies.find({"customer.name": "김철수"})
 ```
-MongoDB는 임베디드 문서의 필드를 **마치 최상위 필드처럼 인덱싱**한다:
+JOIN 연산이 필요 없으며 중첩 필드를 **마치 최상위 필드처럼 인덱싱**할 수 있다.
 ```javascript
 // 복합 중첩 인덱스도 가능
 db.policies.createIndex({
@@ -336,19 +330,18 @@ db.policies.find({
   "status": "active"
 })
 ```
-RDBMS에서 동일한 최적화를 위해서는 3개 테이블 JOIN에 대한 복합 인덱스가 필요하지만, 실제로는 옵티마이저가 효율적으로 사용하기 어렵다.
+위의 조회에서도 단일 인덱스로 조회를 최적화할 수 있다. 하지만 MySQL은 여러 테이블 간 JOIN 연산이 필요하며, 이는 곧 조인 키를 통한 데이터 매칭 과정이 필요하다는 걸 의미한다.  
+RDBMS는 그러한 구조이기 때문에 쿼리가 복잡할 수록 실행 계획은 복잡해질 것이다.
 
 ### 인덱스와 데이터 지역성의 시너지 효과
 MongoDB가 갖는 데이터 지역성에서의 뛰어남은 인덱스 성능에도 직접적인 영향을 끼친다.
 
-**전통적인 RDBMS 인덱스 접근:**
+**전통적인 RDBMS 인덱스 접근**은 다음과 같이 랜덤 I/O를 유발한다.
 1. 인덱스 스캔으로 Row ID 획득 (디스크 위치 A)
 2. Row ID로 실제 데이터 접근 (디스크 위치 B)
 3. JOIN을 위해 다른 테이블 접근 (디스크 위치 C, D)
 
-<br>
-
-**MongoDB 인덱스 접근:**
+이에 반해 **MongoDB 인덱스 접근**은 순차 I/O를 통해 수행된다.
 1. 인덱스 스캔으로 Document ID 획득 (디스크 위치 A)
 2. Document ID로 모든 관련 데이터를 한 번에 접근 (디스크 위치 B)
 
@@ -362,8 +355,7 @@ db.policies.find({"customer.name": "김철수"})
     "coverages": 1
   })
 ```
-
-**캐시 히트율 차이:**
+MySQL는 여러 테이블로 분산, MongoDB는 단일 문서로 저장하기 때문에 **캐시 히트율**에서도 차이점이 생긴다.
 - **MySQL**: 3개 테이블 데이터가 각각 캐시되어야 함 (캐시 효율성 ↓)
 - **MongoDB**: 관련된 모든 데이터가 하나의 문서로 캐시됨 (캐시 효율성 ↑)
 
@@ -388,7 +380,7 @@ db.policies.insertOne({
 RDBMS에서는 새로운 컬럼이 추가될 때마다 스키마 변경과 인덱스 재생성이 필요하다.
 
 ### 성능 수치로 보는 실질적 차이
-**복합 쿼리 성능 비교 (100만 건 기준):**
+**복합 쿼리 성능 비교**를 100만 건을 기준으로 수행해보면 다음과 같은 결과가 나왔다.
 ```sql
 -- MySQL: 고객명 + 보장타입 + 상태 검색
 SELECT p.policy_number 
@@ -399,10 +391,7 @@ WHERE c.name = '김철수'
   AND cov.coverage_type = '생명보험' 
   AND p.status = 'active';
 ```
-**결과**: 평균 180ms
-
-<br>
-
+MySQL은 평균 180ms의 latency를 보였다. 이에 반해 MongoDB는 평균 12ms의 latency를 보였다.
 ```javascript
 // MongoDB: 동일한 조건 검색
 db.policies.find({
@@ -411,9 +400,6 @@ db.policies.find({
   "status": "active"
 })
 ```
-**결과**: 평균 12ms
-
-<br>
 
 이렇게 차이가 나는 근본적 원인은 다음과 같다.
 - **디스크 I/O**: MySQL 3-5회 vs MongoDB 1회
