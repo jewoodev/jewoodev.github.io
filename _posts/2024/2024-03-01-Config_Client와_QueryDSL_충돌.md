@@ -94,6 +94,8 @@ annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 
 ## 4. 문제 정리
 
-- GitHub 서버가 개입되면서, 혹은 MSA 아키텍처가 개입되면서 querydsl-apt의 하위 위존성이 javax로 변경되었다. 
-- Config Client로써 서버를 띄울 때는 1.2 QueryDSL Dependency의 `${~}`부분에서 컨트롤되는 의존성에 영향을 주어서 변경되었다고 의심할 수 있지만, 정확하게 파악하기는 어렵다.
+- MSA를 구성하는 서비스들 중에 Config Client 의존성이 추가된 것에서만 이 글에서 다룬 에러가 발생되었다.
+- 문제가 생기는 서비스의 의존성에서 Config Client만 제거하면 문제가 사라졌고, 추가하면 문제가 생겨났다.
+  - Spring Boot가 관리하는 Config Client 의존성이 QueryDSL과 함께 사용될 때 내부적으로 충돌이 생겨 javax로 다운그레이드 되는 것일 수 있다.
+- 1.2절의 QueryDSL Dependency 문장 `${~}` 부분에서 Spring Boot가 판단 하에 설정하는 의존성이 잘못 들어오는 걸로 확인된다.
 
