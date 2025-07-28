@@ -22,7 +22,7 @@ R2DBC가 탄생하기 전엔 몇몇 NoSQL 벤더만 비동기 방식의 API를 �
 
 25/06/21 일자로 최신 버전은 3.5.1 버전에서 R2DBC가 지원하는 데이터베이스 종류는 다음과 같다.
 
-- [H2](https://github.com/r2dbc/r2dbc-h2), [MariaDB](https://github.com/mariadb-corporation/mariadb-connector-r2dbc),[Microsoft SQL Server](https://github.com/r2dbc/r2dbc-mssql), [MySQL](https://github.com/asyncer-io/r2dbc-mysql), [jasync-sql MySQL](https://github.com/jasync-sql/jasync-sql), [Postgres](https://github.com/pgjdbc/r2dbc-postgresql), [Oracle](https://github.com/oracle/oracle-r2dbc)
+- [H2](https://github.com/r2dbc/r2dbc-h2), [MariaDB](https://github.com/mariadb-corporation/mariadb-connector-r2dbc), [Microsoft SQL Server](https://github.com/r2dbc/r2dbc-mssql), [MySQL](https://github.com/asyncer-io/r2dbc-mysql), [jasync-sql MySQL](https://github.com/jasync-sql/jasync-sql), [Postgres](https://github.com/pgjdbc/r2dbc-postgresql), [Oracle](https://github.com/oracle/oracle-r2dbc)
 
 ---
 
