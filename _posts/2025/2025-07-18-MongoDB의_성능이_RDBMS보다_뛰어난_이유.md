@@ -266,57 +266,16 @@ WiredTiger는 **구성 가능한 데이터 압축**을 지원한다.
 ---
 
 ## 고급 인덱싱
-MongoDB의 성능 우위를 완성하는 세 번째 요소는 고급 인덱싱 기능이다. 단순히 인덱스 종류가 많다는 것이 아니라, **임베디드 데이터 모델과 결합된 인덱싱 최적화**가 핵심이다.
+MongoDB의 성능 우위를 완성하는 세 번째 요소는 인덱싱 기능의 차이이다. 하지만 간단히 말해 인덱싱 기능이지, 결국엔 데이터 모델링 방식, 지역성, I/O 메커니즘 등등.. 이 맞물려있다. 어떤 차이가 있는지 살펴보자.
 
-### 다중키 인덱스: 배열 데이터의 혁신적 처리
-보험 정책의 보장내용(coverages) 배열을 검색하는 상황을 보자.
-
-**MySQL에서 특정 보장내용을 검색**하는 경우엔 다음과 같이 쿼리를 해야 한다.
-```sql
--- "생명보험"이 포함된 정책 찾기
-SELECT p.policy_number, p.premium 
-FROM policies p
-JOIN coverages c ON p.policy_id = c.policy_id
-WHERE c.coverage_type = '생명보험';
-```
-이 경우 coverages 테이블 전체를 스캔하거나, coverage_type에 인덱스가 있어도 JOIN 연산이 필요하다. 이에 반해 **MongoDB에서 배열 내 요소 검색**을 하는 경우엔 부가적인 작업 없이 조회를 수행하게 된다. 
-```javascript
-// "생명보험"이 포함된 정책 찾기
-db.policies.find({"coverages.coverage_type": "생명보험"})
-```
-MongoDB는 배열의 각 요소에 대해 **자동으로 별도의 인덱스 엔트리를 생성**한다. 예를 들어, coverage_type에 인덱스를 생성하면 다음과 같이 인덱스 엔트리가 생성된다.
-```javascript
-// coverages.coverage_type 인덱스 생성
-db.policies.createIndex({"coverages.coverage_type": 1})
-
-// 실제로는 다음과 같은 인덱스 엔트리들이 생성됨:
-// "생명보험" -> ObjectId("507f1f77bcf86cd799439011")
-// "상해보험" -> ObjectId("507f1f77bcf86cd799439011") 
-// "질병보험" -> ObjectId("507f1f77bcf86cd799439011")
-```
-이 차이점은 다음과 같은 **성능 차이**를 가져온다.
-- **MySQL**: JOIN으로 인한 CPU 오버헤드 + 두 테이블의 인덱스 스캔
-- **MongoDB**: 단일 인덱스 스캔으로 즉시 문서 식별
-
-### 임베디드 문서 인덱싱: 중첩 구조의 직접 최적화
-고객명으로 정책을 검색하는 경우를 살펴보자.
-
-MySQL의 경우엔
-```sql
-SELECT p.policy_number 
-FROM policies p 
-JOIN customers c ON p.customer_id = c.customer_id 
-WHERE c.name = '김철수';
-```
-이렇게 'policies' 테이블과 'customers' 테이블을 JOIN 해야 한다.
-
-그리고 MongoDB의 경우엔
+### 임베디드 문서 인덱싱: 중첩 구조의 최적화
+고객명으로 정책을 검색하는 경우를 살펴보자. MongoDB부터 살펴보면 다음과 같다.
 ```javascript
 // 중첩 필드 직접 인덱싱
 db.policies.createIndex({"customer.name": 1})
 db.policies.find({"customer.name": "김철수"})
 ```
-JOIN 연산이 필요 없으며 중첩 필드를 **마치 최상위 필드처럼 인덱싱**할 수 있다.
+MongoDB는 중첩된 문서 구조에서 점 표기법으로 직접적인 조회문을 작성할 수 있으며, 이는 관련 데이터가 물리적으로 함께 저장되는 구조와 결합되어 JOIN 연산 없이 효율적인 검색을 할 수 있다.
 ```javascript
 // 복합 중첩 인덱스도 가능
 db.policies.createIndex({
@@ -332,11 +291,158 @@ db.policies.find({
   "status": "active"
 })
 ```
-위의 조회에서도 단일 인덱스로 조회를 최적화할 수 있다. 하지만 MySQL은 여러 테이블 간 JOIN 연산이 필요하며, 이는 곧 조인 키를 통한 데이터 매칭 과정이 필요하다는 걸 의미한다.  
-RDBMS는 그러한 구조이기 때문에 쿼리가 복잡할 수록 실행 계획은 복잡해질 것이다.
+그래서 MongoDB는 위와 같은 복잡한 조회에서도 단일 인덱스만으로 조회를 최적화할 수 있다. 하지만 MySQL은 그렇게 간단하게 조회가 이루어지지 않는다.
 
-### 인덱스와 데이터 지역성의 시너지 효과
-MongoDB가 갖는 데이터 지역성에서의 뛰어남은 인덱스 성능에도 직접적인 영향을 끼친다.
+MySQL의 JOIN 연산이 포함된 복잡한 쿼리에서 인덱스 사용이 어떻게 이루어지는지 단계별로 살펴보면 다음과 같다.
+
+#### MySQL 옵티마이저의 실행 계획
+```sql
+SELECT p.policy_number, c.name, cov.coverage_type
+FROM policies p
+JOIN customers c ON p.customer_id = c.customer_id  
+JOIN coverages cov ON p.policy_id = cov.policy_id
+WHERE c.name = '김철수' AND cov.coverage_type = '생명보험';
+```
+이 쿼리의 실행 계획을 옵티마이저가 어떻게 수립할까? 다음과 같다.
+
+1. 첫 번째 테이블 선택 (Driving Table)
+    - 가장 선택적인 조건을 가진 테이블을 먼저 선택
+    - 예: customers 테이블의 `name = '김철수'` 조건이 가장 선택적이라면 `idx_customer_name` 인덱스를 사용해 해당 고객 레코드들을 먼저 찾음
+2. 중첩 루프 조인 (Nested Loop Join)
+    ```
+    FOR each customer WHERE name = '김철수':
+    customer_id = 123
+    
+        FOR each policy WHERE customer_id = 123:  -- idx_customer_id 사용
+        policy_id = 456
+    
+            FOR each coverage WHERE policy_id = 456 AND coverage_type = '생명보험':
+              -- idx_policy_coverage 복합 인덱스 사용
+              결과 반환
+    ```
+   맨 처음 `For each` 에 해당하는 조회가 수행되고, 그 결과물을 다음 조인 연산의 키로 사용하는 작업이 순차적으로 이루어진다. 위에서 묘사된 바와 같이 첫 번째 테이블이 `customer`로 정해지면 해당 테이블의 조건으로 다음 조인 연산의 키를 찾고, 다음 조인 연산의 결과로 그 다음 조인 연산의 키를 찾는 것을 순차적으로 수행하는 계획이 수립된다.
+
+#### 인덱스 활용의 제약사항
+```sql
+-- 복합 조건의 쿼리
+WHERE c.name = '김철수'
+  AND p.status = 'active'
+  AND cov.coverage_type = '생명보험'
+  AND cov.coverage_amount > 10000000
+```
+만약 쿼리 조건이 더 복합적이라면 MySQL 옵티마이저는 여러 테이블의 **통계 정보를 종합하여 최적의 실행 계획을 수립**해야 하므로 복잡성이 증가한다. 
+```sql
+-- 각 조건의 선택도를 정확히 예측하기 어려움
+WHERE c.name = '김철수'        -- 선택도: 0.001%?
+  AND p.status = 'active'      -- 선택도: 80%?
+  AND cov.coverage_type = '생명보험'  -- 선택도: 30%?
+  AND cov.coverage_amount > 10000000  -- 선택도: 5%?
+```
+
+현대의 옵티마이저는 이런 복잡성도 잘 처리하지만, 구조적으로 여러 테이블을 조인해야 하는 **근본적 제약은 여전히 남아있다**. 
+```sql
+-- 옵티마이저가 아무리 똑똑해도 이 구조적 제약은 피할 수 없음
+1. 3개 테이블을 반드시 조인해야 함
+2. 각 테이블의 인덱스를 개별적으로 탐색
+3. 중간 결과셋을 메모리에서 처리
+4. 물리적으로 분산된 데이터 접근
+```
+
+반면 MongoDB는 단일 문서 구조로 인해 이러한 **최적화 복잡성 자체가 필요없다**.
+```javascript
+// 옵티마이저 복잡성 자체가 필요 없음
+db.policies.find({
+  "customer.name": "김철수",
+  "status": "active", 
+  "coverages.coverage_type": "생명보험",
+  "coverages.coverage_amount": {$gt: 10000000}
+})
+```
+
+#### 실제 성능 이슈 (인덱스가 있어도 느린 이유)
+```sql
+SELECT p.policy_number, c.name, cov.coverage_type
+FROM policies p
+JOIN customers c ON p.customer_id = c.customer_id  
+JOIN coverages cov ON p.policy_id = cov.policy_id
+WHERE c.name = '김철수'
+```
+MySQL의 성능이 나빠지는 이유에는 **다중 인덱스 접근**으로 인한 오버헤드도 빼놓을 수 없다. "인덱스가 어떻게 활용되지?" 라는 의문점을 중점적으로 두고 살펴보면
+
+1. `customers.name` 를 인덱스(를 통해) 조회해서 → `customer_id` 획득
+2. `policies.customer_id` 를 인덱스 조회해서 → `policy_id`들 획득
+3. `coverages.policy_id` 를 인덱스 조회해서 → `coverage` 레코드들 획득
+
+순서로 수행되며 각 단계마다 실제 데이터 페이지 접근이 일어나게 될 것이다. 즉, 인덱스 스캔만 3번, 그것도 랜덤 I/O가 발생한다. 
+
+**조인 순서 최적화의 복잡성**도 성능 이슈의 원인이다.
+```sql
+-- 옵티마이저가 잘못된 순서를 선택할 수 있음
+EXPLAIN SELECT ...
+-- 때로는 STRAIGHT_JOIN 힌트가 필요
+```
+
+느려지는 이슈 외에 메모리 사용이 MongoDB보다 비효율적인 면이 있다. 이는 잠시 후에 '메모리 캐시 효율성' 섹션에서 살펴보도록 하겠다.
+
+### 다중키 인덱스: 배열 데이터 처리
+보험 정책의 보장내용(coverages) 배열을 검색하는 상황을 보자.
+
+**MySQL에서 특정 보장내용을 검색**하는 경우엔 다음과 같이 쿼리를 해야 한다.
+
+```sql
+-- "생명보험"이 포함된 정책 찾기
+SELECT p.policy_number, p.premium 
+FROM policies p
+JOIN coverages c ON p.policy_id = c.policy_id
+WHERE c.coverage_type = '생명보험';
+```
+이 경우 coverages 테이블 전체를 스캔하거나, coverage_type에 인덱스가 있어도 JOIN 연산이 필요하다. 이에 반해 MongoDB의 데이터 모델에서는 이를 배열로 설계함으로써 **배열 내 요소 검색**을 수행하게 된다. 이는 부가적인 작업 없이 조회를 수행하는 결과로 이어진다.
+
+```javascript
+// "생명보험"이 포함된 정책 찾기
+db.policies.find({"coverages.coverage_type": "생명보험"})
+```
+MongoDB는 배열의 각 요소에 인덱스를 걸 수 있다. 예를 들어, coverage_type에 인덱스를 생성하면 다음과 같이 인덱스 엔트리가 생성된다.
+```javascript
+// coverages.coverage_type 인덱스 생성
+db.policies.createIndex({"coverages.coverage_type": 1})
+
+// 하나의 문서에 배열로 저장
+{
+    _id: ObjectId("507f1f77bcf86cd799439011"),
+        
+    // ...
+
+    coverages: [
+        {
+            coverage_type: "생명보험",
+            coverage_amount: 100000000,
+            deductible: 0
+        },
+        {
+            coverage_type: "상해보험",
+            coverage_amount: 50000000,
+            deductible: 100000
+        },
+        {
+            coverage_type: "질병보험",
+            coverage_amount: 30000000,
+            deductible: 50000
+        }
+    ]
+}
+
+// 실제로는 다음과 같은 인덱스 엔트리들이 생성됨:
+// "생명보험" -> ObjectId("507f1f77bcf86cd799439011")
+// "상해보험" -> ObjectId("507f1f77bcf86cd799439011") 
+// "질병보험" -> ObjectId("507f1f77bcf86cd799439011")
+```
+여기서 살펴본 차이점 때문에 다음과 같은 **성능 차이**가 있다.
+- **MySQL**: JOIN으로 인한 CPU 오버헤드 + 두 테이블의 인덱스 스캔
+- **MongoDB**: 단일 인덱스 스캔으로 즉시 문서 식별
+
+### '인덱스 지역성'과 'I/O 처리 방식'의  차이
+MongoDB는 단일 문서로 데이터를 모델링 하기 때문에 하나의 인덱스 테이블만 스캔한다. 그리고 I/O 방식도 다르다. 어떻게 다를까?
 
 **전통적인 RDBMS 인덱스 접근**은 다음과 같이 랜덤 I/O를 유발한다.
 1. 인덱스 스캔으로 Row ID 획득 (디스크 위치 A)
@@ -347,22 +453,46 @@ MongoDB가 갖는 데이터 지역성에서의 뛰어남은 인덱스 성능에�
 1. 인덱스 스캔으로 Document ID 획득 (디스크 위치 A)
 2. Document ID로 모든 관련 데이터를 한 번에 접근 (디스크 위치 B)
 
-### 메모리 캐시 효율성
-```javascript
-// 이 쿼리는 인덱스 스캔 후 단 한 번의 문서 접근만 필요
-db.policies.find({"customer.name": "김철수"})
-  .projection({
-    "policy_number": 1,
-    "customer": 1, 
-    "coverages": 1
-  })
+그리고 MongoDB의 I/O는 클러스터드 인덱스 룩업을 수행하지 않고 `_id`값으로 직접 물리적 위치를 계산하는 메커니즘으로 되어 있다.   
+
+```sql
+SELECT * FROM coverages WHERE coverage_type = '생명보험';
+
+-- 실행 과정:
+-- 1. 세컨더리 인덱스: coverage_type → primary_key
+-- 2. 클러스터드 인덱스: primary_key → 데이터 페이지
 ```
-MySQL는 여러 테이블로 분산, MongoDB는 단일 문서로 저장하기 때문에 **캐시 히트율**에서도 차이점이 생긴다.
-- **MySQL**: 3개 테이블 데이터가 각각 캐시되어야 함 (캐시 효율성 ↓)
-- **MongoDB**: 관련된 모든 데이터가 하나의 문서로 캐시됨 (캐시 효율성 ↑)
+MySQL은 이렇게 클러스터디 인덱스 룩업이 수행되면서 I/O가 처리되지만
+
+```javascript
+db.policies.find({"coverages.coverage_type": "생명보험"})
+
+// 실행 과정:
+// 1. 세컨더리 인덱스: coverage_type → _id
+// 2. _id로 직접 문서 위치 계산 (추가 인덱스 룩업 없음)
+```
+MongoDB는 그렇지 않다. 그런 참조 없이 WiredTiger가 ObjectId로 문서의 물리적 위치를 직접 계산한다.
+
+### 메모리 캐시 효율성
+MySQL는 여러 테이블로 분산, MongoDB는 단일 문서로 저장하기 때문에 **메모리 사용 패턴**에서 차이가 생긴다.
+
+**MySQL의 캐시 사용:**
+- 논리적으로 연관된 데이터가 물리적으로 분산된 페이지들에 저장
+- 3개 테이블의 각기 다른 페이지를 모두 메모리에 유지해야 함
+- **메모리 사용량 증가**: 관련 없는 테이블의 페이지들까지 점유
+    - 예시: 48KB를 메모리에 로드 -> 650 바이트만 실제 사용 (1.4% 효율)
+
+**MongoDB의 캐시 사용:**
+- 논리적으로 연관된 데이터가 물리적으로 하나의 문서에 집중
+- 단일 페이지 로드로 모든 관련 정보 확보
+- **메모리 사용량 효율**: 최소한의 페이지로 최대 정보 획득
+    - 예시: 8KB를 메모리에 로드 -> 650 바이트 실제 사용 (8% 효율)
+
+그리고 위 예시에서 MySQL은 3개의 테이블에 접근하므로 3번의 CPU 캐시 미스가 생겨날 수 있지만 MongoDB는 1개의 문서에 접근하므로 캐시 미스가 1번만 일어날 수 있다.  
+CPU 캐시 미스 또한 당연히 오버헤드로 이어질 수 있다는 걸 재미로 알아두자. 성능 차이의 주요 원인은 아니다.
 
 ### 와일드카드 인덱스: 스키마리스의 진정한 활용
-MongoDB만의 독특한 기능인 와일드카드 인덱스는 스키마가 자주 변경되는 환경에서 진가를 발휘한다.
+MongoDB는 스키마가 자주 변경되는 환경에서 동적으로 인덱싱을 할 수 있다. 와일드카드 인덱스를 활용하면 되는데, 아래에서 와일드카드 인덱스를 걸면 어떻게 인덱스가 생성되는지 확인해보자.
 ```javascript
 // 모든 하위 필드에 대한 동적 인덱싱
 db.policies.createIndex({"coverages.$**": 1})
@@ -372,41 +502,14 @@ db.policies.insertOne({
   policy_number: "POL-2024-002",
   coverages: [
     {
-      coverage_type: "생명보험",
-      new_field: "새로운 속성",  // 자동으로 인덱싱됨
+      coverage_type: "생명보험", // 자동으로 인덱싱됨
+      new_field: "새로운 속성",  // 이것도 자동으로 인덱싱됨
       another_field: "또 다른 속성"  // 이것도 자동으로 인덱싱됨
     }
   ]
 })
 ```
-RDBMS에서는 새로운 컬럼이 추가될 때마다 스키마 변경과 인덱스 재생성이 필요하다.
-
-### 성능 수치로 보는 실질적 차이
-**복합 쿼리 성능 비교**를 100만 건을 기준으로 수행해보면 다음과 같은 결과가 나왔다.
-```sql
--- MySQL: 고객명 + 보장타입 + 상태 검색
-SELECT p.policy_number 
-FROM policies p
-JOIN customers c ON p.customer_id = c.customer_id
-JOIN coverages cov ON p.policy_id = cov.policy_id  
-WHERE c.name = '김철수' 
-  AND cov.coverage_type = '생명보험' 
-  AND p.status = 'active';
-```
-MySQL은 평균 180ms의 latency를 보였다. 이에 반해 MongoDB는 평균 12ms의 latency를 보였다.
-```javascript
-// MongoDB: 동일한 조건 검색
-db.policies.find({
-  "customer.name": "김철수",
-  "coverages.coverage_type": "생명보험", 
-  "status": "active"
-})
-```
-
-이렇게 차이가 나는 근본적 원인은 다음과 같다.
-- **디스크 I/O**: MySQL 3-5회 vs MongoDB 1회
-- **메모리 접근**: MySQL 분산된 캐시 vs MongoDB 집중된 캐시
-- **CPU 사용량**: MySQL JOIN 연산 vs MongoDB 직접 접근
+코드에서 `coverages.$**`의 `$**`가 와일드카드 지정자이다. 이렇게 설정하면 `coverages` 필드가 내장된 문서 또는 배열인 경우 그 문서/배열의 모든 필드에 인덱스를 생성한다. 
 
 ---
 
