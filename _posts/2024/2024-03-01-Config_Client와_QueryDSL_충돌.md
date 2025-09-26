@@ -53,6 +53,8 @@ annotationProcessor "jakarta.annotation:jakarta.annotation-api"
 annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 ```
 
+---
+
 ## 2. 문제의 원인
 
 어떤 이유로 Config Client가 build 될 수 없는지 정확한 파악은 어려웠다. 
@@ -68,6 +70,8 @@ annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedPr
 > **참고**
 >
 > querydsl-apt 라이브러리는Q타입 class를 자동 생성해주는 역할을 한다.
+
+---
 
 ## 3. 문제 해결
 
@@ -92,10 +96,11 @@ annotationProcessor "jakarta.persistence:jakarta.persistence-api"
 
 이 시도로 문제가 해결되었다.
 
+---
+
 ## 4. 문제 정리
 
 - MSA를 구성하는 서비스들 중에 Config Client 의존성이 추가된 것에서만 이 글에서 다룬 에러가 발생되었다.
 - 문제가 생기는 서비스의 의존성에서 Config Client만 제거하면 문제가 사라졌고, 추가하면 문제가 생겨났다.
   - Spring Boot가 관리하는 Config Client 의존성이 QueryDSL과 함께 사용될 때 내부적으로 충돌이 생겨 javax로 다운그레이드 되는 것일 수 있다.
 - 1.2절의 QueryDSL Dependency 문장 `${~}` 부분에서 Spring Boot가 판단 하에 설정하는 의존성이 잘못 들어오는 걸로 확인된다.
-
