@@ -22,7 +22,7 @@ description: >- # used by seo meta and the atom feed
   최고의 개발자가 될 개발자의 꾸준한 발자취 | Back-end, Data engineering
 
 # Fill in the protocol & hostname for your site.
-# e.g. 'https://username.github.io', note that it does not end with a '/'.
+# E.g. 'https://username.github.io', note that it does not end with a '/'.
 url: 'https://jewoodev.github.io'
 
 github:
@@ -144,7 +144,7 @@ pwa:
     # Usually its value is the `baseurl` of another website that
     # shares the same domain name as the current website.
     deny_paths:
-    # - "/example"  # URLs match `<SITE_URL>/example/*` will not be cached by the PWA
+      # - "/example"  # URLs match `<SITE_URL>/example/*` will not be cached by the PWA
 
 paginate: 10
 

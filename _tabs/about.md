@@ -4,15 +4,5 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-> 데이터 엔지니어링 공부를 시작으로, 점차 서버와 인프라의 구조에 흥미를 느껴 현재는 Spring을 사용해 변화에 유연하면서도 견고한 백엔드 서버를 만들기 위해 노력하고 있습니다.
->
-> 기술적으로 확장 가능하고, 명시적이며, 신뢰 가능한 코드와 아키텍처도 중요하지만 비즈니스 가치에 유연함을 잃지 않는 엔지니어가 되려 합니다.
->
-> 산드로 만쿠소님의 "소프트웨어 장인"에서 말하는 프로그래머로써의 자부심을 가질 수 있는 엔지니어가 되고 싶습니다.
-
-
-### Carieer
-
-| Company | Role    | Stack  | Period     |
-|---------|---------|--------|------------|
-| Heribio | Backend | Spring | 24-11-04 ~ |
+> Add Markdown syntax content to file `_tabs/about.md`{: .filepath } and it will show up on this page.
+{: .prompt-tip }
