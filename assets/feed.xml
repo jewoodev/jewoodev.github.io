@@ -45,13 +45,7 @@ permalink: /feed.xml
     {% endfor %}
   {% endif %}
 
-  <summary>
-    {% if post.excerpt %}
-      {{ post.excerpt | strip_html | truncate: 400 }}
-    {% else %}
-      {{ post.content | strip_html | truncate: 400 }}
-    {% endif %}
-  </summary>
+  <summary>{% include post-summary.html max_length=400 %}</summary>
 
   </entry>
 {% endfor %}
