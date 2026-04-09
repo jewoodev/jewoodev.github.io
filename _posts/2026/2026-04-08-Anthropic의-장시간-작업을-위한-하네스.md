@@ -175,7 +175,7 @@ _세션 절차의 세 단계가 Orient/Select 단계와 매칭된다._
 
 `init.sh`는 Spring 프로젝트라면 거의 자동으로 채울 수 있다. `./gradlew bootRun`이 뜨는지, `/actuator/health`가 200을 주는지, `./gradlew test`가 통과하는지. 이전 세션이 멀쩡한 상태로 끝났는지를 사람에게 묻는 대신 세 줄짜리 스크립트면 충분하다. 핵심은 새로 짜는 게 아니라, 우리가 평소에 PR 머지 전에 손으로 확인하던 항목들을 그대로 옮겨 적는 것이다.
 
-7단계 workflow도 우리에게 익숙하다. Orient(progress 읽기) = 어제 작성한 PR 설명과 코멘트 다시 읽기. Verify(init.sh) = 로컬에서 `bootRun` 한 번 띄워보기. 그리고 Implement → Test E2E → Commit → Leave merge-ready = 한 PR을 머지 가능한 상태로 떠나는 흐름 그 자체.  
+7단계 workflow도 우리에게 익숙하다. Orient(progress 읽기) = 어제 작성한 PR 설명과 코멘트 다시 읽기. Verify(init.sh) = 로컬에서 `bootRun` 한 번 띄워보기. 그리고 Implement → Test E2E → Commit → Leave merge-ready = PR을 머지 가능한 상태로 떠나는 흐름 그 자체.  
 
 "세션 하나에 feature 하나만 닫는다"는 규칙은 "한 PR에 한 가지 일만 한다"는 우리가 이미 지키려고 하는 원칙이다. 결국 이 harness가 에이전트에게 부과하는 룰은 사람에게 부과되는 것과 거의 같다. 다른 점은 하나뿐이다. 사람은 규칙을 어기게 되면 본인이 부끄러워서 다음번엔 지키려 하지만, 에이전트는 부끄러움이 없으므로 파일과 스크립트로 강제해야 한다.
 
