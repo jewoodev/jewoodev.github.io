@@ -118,7 +118,7 @@ ouroboros가 그 후에 두는 3단계 검증(Mechanical → Semantic → Multi-
 
 ## 5. Reference
 
-여기까지 정리한 내용의 출발점이 된 글은 Anthropic Engineering 블로그에 올라온 [**Effective harnesses for long-running agents**](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)다. Justin Young이 쓴 글로, Claude Agent SDK가 여러 context window를 가로질러 작업할 수 있게 만든 initializer/coding 두 프롬프트 패턴을 처음으로 정리해 공개했다. 이후 Anthropic은 같은 문제에 multi-agent 구조로 답한 후속 글도 냈는데, 이 글은 그 흐름의 *첫 번째* 글 — 단일 에이전트와 외부 artifact만으로 어디까지 갈 수 있는지를 보여주는 출발점 — 에 해당한다. 후속 글들은 이 시리즈의 2편과 3편에서 차례로 다룰 예정이다. 
+여기까지 정리한 내용의 출발점이 된 글은 Anthropic Engineering 블로그에 올라온 [**Effective harnesses for long-running agents**](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)다. Justin Young이 쓴 글로, Claude 4 prompting guide에서 짧게 언급됐던 "첫 context window에는 다른 프롬프트를 쓴다"는 multi-context window workflow 아이디어를, Claude Agent SDK 위에서 initializer와 coding 두 개의 초기 프롬프트로 구체화해 본격적으로 풀어낸 글이다. 두 agent는 초기 user prompt만 다를 뿐 system prompt·도구·harness는 동일하므로, "두 개의 에이전트"라기보다 "하나의 harness를 구동하는 두 개의 프롬프트 패턴"에 가깝다. 이 글은 단일 에이전트와 claude-progress.txt·feature_list.json·git 같은 외부 artifact만으로 long-running 작업을 어디까지 끌고 갈 수 있는지를 보여주는 출발점에 해당한다.
 
 ## 닫는 말
 
