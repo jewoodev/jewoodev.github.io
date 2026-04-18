@@ -2,7 +2,7 @@
 title : Pandas - DataFrame
 date : 2023-02-25 13:20:00 +09:00
 categories : [Python, Basic]
-tags : [Data]
+tags : [data]
 ---
 
 Pandas는 주로 데이터 분석에 사용됩니다.  

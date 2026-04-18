@@ -2,7 +2,7 @@
 title : 다른 계정 간의 S3 Object Migration
 date : 2023-07-06 15:58:00 +09:00
 categories : [AWS, S3]
-tags : [Migration]
+tags : [migration]
 use_math : true
 ---
 

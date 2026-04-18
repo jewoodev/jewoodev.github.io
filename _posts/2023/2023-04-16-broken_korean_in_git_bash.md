@@ -2,7 +2,7 @@
 title : Git bash 에서 한글깨짐 문제 해결
 date : 2023-04-17 09:20:00 +09:00
 categories : [Git, Korean]
-tags : [Config]
+tags : [config]
 ---
 
 Git bash 혹은 CLI 로 git을 사용 시 한글 내용이 깨지는 현상이 발생합니다. 아주 자연스러운 현상이에요.

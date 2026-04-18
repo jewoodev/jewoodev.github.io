@@ -2,7 +2,7 @@
 title : Jekyll web 구현해보기 on Ubuntu
 date : 2023-04-16 17:36:00 +09:00
 categories : [Web, Jekyll]
-tags : [Install]
+tags : [install]
 ---
 
 ## Jekyll 이란?

@@ -2,7 +2,7 @@
 title : Oh my Stack 프로젝트 설명, 2023년 상반기 회고록
 date : 2023-07-01 18:29:00 +09:00
 categories : [Project, Memoirs]
-tags : [Memoirs]
+tags : [memoirs]
 use_math : true
 ---
 

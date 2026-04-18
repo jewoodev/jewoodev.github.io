@@ -2,7 +2,7 @@
 title : (WSL2) Ubuntu 20.04 설치
 date : 2023-04-16 16:55:00 +09:00
 categories : [Linux, Ubuntu]
-tags : [WSL2]
+tags : [wsl2]
 ---
 
 이번에는 WSL2을 이용해서 가상머신에 Ubuntu 20.04 를 설치보겠습니다. 

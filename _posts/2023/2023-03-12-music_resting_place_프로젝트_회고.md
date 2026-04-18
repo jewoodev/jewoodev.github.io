@@ -2,7 +2,7 @@
 title : 사용자 감정 기반 음악 추천 프로젝트 회고
 date : 2023-03-12 21:00:00 +09:00
 categories : [Project, Memoirs]
-tags : [Memoirs]
+tags : [memoirs]
 use_math : true
 ---
 

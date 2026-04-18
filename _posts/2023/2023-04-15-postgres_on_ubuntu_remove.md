@@ -2,7 +2,7 @@
 title : (WSL2) Ubuntu 22.04 에서 PostgreSQL 설치 오류, 완전 삭제
 date : 2023-04-15 15:10:00 +09:00
 categories : [Linux, Ubuntu]
-tags : [PostgreSQL]
+tags : [postgresql]
 ---
 
 우분투에 PostgreSQL 을 설치하는데에 오류를 겪었고 그로 인해 계속해서 완전 삭제 후 재설치를 하는 과정을 겪어 같은 트러블 슈팅을 하고 계신 분들에게 제 경험을 나누려고 하는 글입니다.

@@ -2,7 +2,7 @@
 title : (WSL2) systemctl 명령어 에러
 date : 2023-04-17 15:10:00 +09:00
 categories : [Linux, Ubuntu]
-tags : [Error]
+tags : [error]
 ---
 
 wsl 을 사용하시다가 systemctl 명령어를 사용할 때 

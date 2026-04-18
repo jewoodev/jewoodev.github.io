@@ -2,7 +2,7 @@
 title : Pandas - Series
 date : 2023-01-28 21:48:00 +09:00
 categories : [Python, Basic]
-tags : [Basic]
+tags : [basic]
 ---
 
 Pandas는 주로 데이터 분석에 사용됩니다.  

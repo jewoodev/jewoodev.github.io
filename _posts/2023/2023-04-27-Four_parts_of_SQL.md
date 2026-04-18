@@ -2,7 +2,7 @@
 title : SQL의 DDL, DML, DCL, TCL은 뭘까?
 date : 2023-04-27 00:20:00 +09:00
 categories : [SQL, Base]
-tags : [Base]
+tags : [base]
 ---
 
 ![image](https://user-images.githubusercontent.com/105477856/234650836-3426fa67-0e98-4a60-9ee1-a3d97b331882.png)

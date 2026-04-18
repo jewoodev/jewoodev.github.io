@@ -2,7 +2,7 @@
 title : "CSS 핵심 개념"
 date : 2023-12-12 22:40:00 +09:00
 categories : [Web, Standard]
-tags : [CSS]
+tags : [css]
 use_math : true
 ---
 
