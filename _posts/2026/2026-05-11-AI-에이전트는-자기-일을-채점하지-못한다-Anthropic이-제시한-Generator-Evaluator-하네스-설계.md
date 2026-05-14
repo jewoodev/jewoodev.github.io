@@ -4,7 +4,7 @@ date: 2026-05-14 14:00:00 +09:00
 categories: [AI, Harness]
 tags: [harness]
 image:
-  path: assets/img/에이전트는-자기-일을-평가하지-못한다/cover.png
+  path: assets/img/AI-에이전트는-자기-일을-채점하지-못한다-Anthropic이-제시한-Generator-Evaluator-하네스-설계/cover.png
 ---
 
 이전 두 글에서는 AI 에이전트의 병목 두 가지를 짚었습니다. 1편은 작업 머리가 가득 차면서 앞 내용을 잃어버리는 문제, 2편은 기억 공간이 비어 있는데도 성능이 무너지는 문제였습니다. 처방은 각각 *하네스*와 *컨텍스트 엔지니어링*이었습니다.
